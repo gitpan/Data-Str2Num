@@ -6,5 +6,6 @@ lib/Data/Str2Num.pm
 t/Data/Str2Num.d
 t/Data/Str2Num.pm
 t/Data/Str2Num.t
-tlib/File/Package.pm
-tlib/Test/Tech.pm
+t/Data/File/Package.pm
+t/Data/Test/Tech.pm
+t/Data/Data/Secs2.pm

@@ -1,3 +1,84 @@
+NAME
+    Data::Str2int - convert a scalar string to an integer
+
+SYNOPSIS
+     #####
+     # Subroutine interface
+     #  
+     use Data::Str2Num qw(str2int str2int_bytes);
+
+     $integer = str2int($string);
+     $integer = str2int(@strings);
+     @integers = str2int(@strings);
+
+     #####
+     # Class interface
+     #
+     use Data::Secs2;
+
+     use Data::Str2Num;
+
+     $integer = Data::Str2Num->str2int($string)
+     $integer = Data::Str2Num->str2int(@strings);
+     @integers = Data::Str2Num->str2int(@strings);
+
+DESCRIPTION
+    The "Data::Str2Num" program module is obsolete and superceded by the
+    "Data::SecsPack" program module.
+
+REQUIREMENTS
+    Coming soon.
+
+NOTES
+  AUTHOR
+
+    The holder of the copyright and maintainer is
+
+    <support@SoftwareDiamonds.com>
+
+  COPYRIGHT NOTICE
+
+    Copyrighted (c) 2002 Software Diamonds
+
+    All Rights Reserved
+
+  BINDING REQUIREMENTS NOTICE
+
+    Binding requirements are indexed with the pharse 'shall[dd]' where dd is
+    an unique number for each header section. This conforms to standard
+    federal government practices, 490A (the 3.2.3.6 entry in the STD490A
+    manpage). In accordance with the License, Software Diamonds is not
+    liable for any requirement, binding or otherwise.
+
+  LICENSE
+
+    Software Diamonds permits the redistribution and use in source and
+    binary forms, with or without modification, provided that the following
+    conditions are met:
+
+    1   Redistributions of source code must retain the above copyright
+        notice, this list of conditions and the following disclaimer.
+
+    2   Redistributions in binary form must reproduce the above copyright
+        notice, this list of conditions and the following disclaimer in the
+        documentation and/or other materials provided with the distribution.
+
+    SOFTWARE DIAMONDS, http::www.softwarediamonds.com, PROVIDES THIS
+    SOFTWARE 'AS IS' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
+    NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+    FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL SOFTWARE
+    DIAMONDS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+    SPECIAL,EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+    TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,DATA, OR
+    PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+    LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING USE
+    OF THIS SOFTWARE, EVEN IF ADVISED OF NEGLIGENCE OR OTHERWISE) ARISING IN
+    ANY WAY OUT OF THE POSSIBILITY OF SUCH DAMAGE.
+
+  SEE_ALSO:
+
+    File::Spec
+    Data::Str2Num
 Title Page
      Software Version Description
 
@@ -5,11 +86,11 @@ Title Page
 
      Data::Str2Num - convert a scalar string to an integer
 
-     Revision: B
+     Revision: C
 
-     Version: 0.03
+     Version: 0.04
 
-     Date: 2003/07/27
+     Date: 2004/04/13
 
      Prepared for: General Public 
 
@@ -24,10 +105,12 @@ Title Page
     files.
 
   1.1 Identification
+
     This release, identified in 3.2, is a collection of Perl modules that
     extend the capabilities of the Perl language.
 
   1.2 System overview
+
     The "Data::Str2Num" module extends the Perl language (the system).
 
     The "Data::Str2int" module translates an scalar string to a scalar
@@ -44,7 +127,8 @@ Title Page
     but also for testing a scalar to see if it is in fact an integer scalar.
 
   1.3 Document overview.
-    This document releases Data::Str2Num version 0.03 providing a
+
+    This document releases Data::Str2Num version 0.04 providing a
     description of the inventory, installation instructions and other
     information necessary to utilize and track this release.
 
@@ -53,10 +137,15 @@ Title Page
     specification.
 
   3.1 Inventory of materials released.
-    This document releases the file found at the following repository(s):
 
-       http://www.softwarediamonds/packages/Data-Str2Num-0.03
-       http://www.perl.com/CPAN-local/authors/id/S/SO/SOFTDIA/Data-Str2Num-0.03
+    This document releases the file
+
+     Data-Str2Num-0.04.tar.gz
+
+    found at the following repository(s):
+
+      http://www.softwarediamonds/packages/
+      http://www.perl.com/CPAN-local/authors/id/S/SO/SOFTDIA/
 
     Restrictions regarding duplication and license provisions are as
     follows:
@@ -95,23 +184,26 @@ Title Page
         OF SUCH DAMAGE.
 
   3.2 Inventory of software contents
+
     The content of the released, compressed, archieve file, consists of the
     following files:
 
      file                                                         version date       comment
      ------------------------------------------------------------ ------- ---------- ------------------------
-     lib/Docs/Site_SVD/Data_Str2Num.pm                            0.03    2003/07/27 revised 0.02
-     MANIFEST                                                     0.03    2003/07/27 generated, replaces 0.02
-     Makefile.PL                                                  0.03    2003/07/27 generated, replaces 0.02
-     README                                                       0.03    2003/07/27 generated, replaces 0.02
-     lib/Data/Str2Num.pm                                          0.02    2003/07/21 unchanged
-     t/Data/Str2Num.d                                             0.01    2003/07/20 unchanged
-     t/Data/Str2Num.pm                                            0.02    2003/07/27 revised 0.01
-     t/Data/Str2Num.t                                             0.02    2003/07/27 revised 0.01
-     tlib/File/Package.pm                                         1.11    2003/07/27 new
-     tlib/Test/Tech.pm                                            1.11    2003/07/27 new
+     lib/Docs/Site_SVD/Data_Str2Num.pm                            0.04    2004/04/13 revised 0.03
+     MANIFEST                                                     0.04    2004/04/13 generated, replaces 0.03
+     Makefile.PL                                                  0.04    2004/04/13 generated, replaces 0.03
+     README                                                       0.04    2004/04/13 generated, replaces 0.03
+     lib/Data/Str2Num.pm                                          0.03    2004/04/13 revised 0.02
+     t/Data/Str2Num.d                                             0.02    2004/04/13 revised 0.01
+     t/Data/Str2Num.pm                                            0.03    2004/04/13 revised 0.02
+     t/Data/Str2Num.t                                             0.03    2004/04/13 revised 0.02
+     t/Data/File/Package.pm                                       1.15    2004/04/13 new
+     t/Data/Test/Tech.pm                                          1.17    2004/04/13 new
+     t/Data/Data/Secs2.pm                                         1.15    2004/04/13 new
 
   3.3 Changes
+
     Changes are as follows:
 
     Data::Str2Num 0.01
@@ -130,7 +222,21 @@ Title Page
         support files in the tlib directory will vanish after the
         installtion.
 
+    Data::Str2Num 0.04
+        The lastest build of Test::STDmaker expects the test library in the
+        same directory as the test script. Coordiated with the lastest
+        Test::STDmaker by moving the test library from tlib to t/Data, the
+        same directory as the test script and deleting the test library
+        File::TestPath program module.
+
+        The "Data::Str2Num" module is now obsolete and superceded by the
+        "Data::SecsPack" module. Replace all subroutines to call the
+        compatible subroutines in the "Data:SecsPack" module and make any
+        necessary manipulates to provide exact equivalent of the old
+        "Data::Str2Num" subroutines.
+
   3.4 Adaptation data.
+
     This installation requires that the installation site has the Perl
     programming language installed. There are no other additional
     requirements or tailoring needed of configurations files, adaptation
@@ -138,28 +244,47 @@ Title Page
     installation site.
 
   3.5 Related documents.
+
     There are no related documents needed for the installation and test of
     this release.
 
   3.6 Installation instructions.
+
     Instructions for installation, installation tests and installation
     support are as follows:
 
     Installation Instructions.
-        To installed the release file, use the CPAN module in the Perl
-        release or the INSTALL.PL script at the following web site:
+        To installed the release file, use the CPAN module pr PPM module in
+        the Perl release or the INSTALL.PL script at the following web site:
 
          http://packages.SoftwareDiamonds.com
 
         Follow the instructions for the the chosen installation software.
 
-        The distribution file is at the following respositories:
+        If all else fails, the file may be manually installed. Enter one of
+        the following repositories in a web browser:
 
-           http://www.softwarediamonds/packages/Data-Str2Num-0.03
-           http://www.perl.com/CPAN-local/authors/id/S/SO/SOFTDIA/Data-Str2Num-0.03
+          http://www.softwarediamonds/packages/
+          http://www.perl.com/CPAN-local/authors/id/S/SO/SOFTDIA/
+
+        Right click on 'Data-Str2Num-0.04.tar.gz' and download to a
+        temporary installation directory. Enter the following where $make is
+        'nmake' for microsoft windows; otherwise 'make'.
+
+         gunzip Data-Str2Num-0.04.tar.gz
+         tar -xf Data-Str2Num-0.04.tar
+         perl Makefile.PL
+         $make test
+         $make install
+
+        On Microsoft operating system, nmake, tar, and gunzip must be in the
+        exeuction path. If tar and gunzip are not install, download and
+        install unxutils from
+
+         http://packages.softwarediamonds.com
 
     Prerequistes.
-         None.
+         'Data::SecsPack' => '0.01',
 
     Security, privacy, or safety precautions.
         None.
@@ -177,6 +302,7 @@ Title Page
          603 882-0846 E<lt>support@SoftwareDiamonds.comE<gt>
 
   3.7 Possible problems and known errors
+
     There is still much work needed to ensure the quality of this module as
     follows:
 
@@ -203,4 +329,3 @@ Title Page
 2.0 SEE ALSO
     Data::Str2Num
     Docs::US_DOD::SVD
-

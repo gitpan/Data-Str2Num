@@ -14,30 +14,29 @@ use warnings::register;
 # Connect up with the event log.
 #
 use vars qw( $VERSION $DATE $FILE);
-$VERSION = '0.02';
-$DATE = '2003/07/21';
+$VERSION = '0.03';
+$DATE = '2004/04/13';
 $FILE = __FILE__;
 
 use vars qw(@ISA @EXPORT_OK);
 require Exporter;
 @ISA=('Exporter');
-@EXPORT_OK = qw(&str2int);
+@EXPORT_OK = qw(str2int);
 
+use Data::SecsPack;
 
 ######
 # Convert number (oct, bin, hex, decimal) to decimal
 #
 sub str2int
 {
-    return undef unless(defined($_[0]));      
-    shift @_ if $_[0] eq 'Data::Str2Num' || ref($_[0]);  # drop self on object call 
-    my ($num) = @_;
-    return undef unless defined($num);
-    return 0+oct($num) if( $num =~ /^0[0-7]+$|^0b[0-1]+$|^0x[0-9A-Fa-f]+$/ ); 
-    return 0+$num if( $num =~ /^[ 0-9]+$/ ); 
-    undef;
-
+     shift if UNIVERSAL::isa($_[0],__PACKAGE__);
+     ####  
+     # do no let the wantarray kink in
+     my $num = Data::SecsPack->str2int(@_); 
+     $num;  
 }
+
 
 1
 
@@ -50,92 +49,36 @@ Data::Str2int - convert a scalar string to an integer
 
 =head1 SYNOPSIS
 
+ #####
+ # Subroutine interface
+ #  
+ use Data::Str2Num qw(str2int str2int_bytes);
+
+ $integer = str2int($string);
+ $integer = str2int(@strings);
+ @integers = str2int(@strings);
+
+ #####
+ # Class interface
+ #
+ use Data::Secs2;
+
  use Data::Str2Num;
 
- $integer = Data::Str2Num->str2int($str)
+ $integer = Data::Str2Num->str2int($string)
+ $integer = Data::Str2Num->str2int(@strings);
+ @integers = Data::Str2Num->str2int(@strings);
 
-
- use Data::Str2Num qw(str2int);
-
- $integer = str2int($str)
 
 =head1 DESCRIPTION
 
-The "Data::Str2Num" module translates an scalar string to a scalar integer.
-Perl itself has a documented function, '0+$x', that converts a scalar to
-so that its internal storage is an integer
-(See p.351, 3rd Edition of Programming Perl).
-If it cannot perform the conversion, it leaves the integer 0.
-Surprising not all Perls, some Microsoft Perls in particular, may leave
-the internal storage as a scalar string.
-
-The "str2int" function is basically the same except if it cannot perform
-the conversion to an integer, it returns an "undef" instead of a 0.
-Also, if the string is a decimal or floating point, it will return an undef.
-This makes it not only useful for forcing an integer conversion but
-also for testing a scalar to see if it is in fact an integer scalar.
+The C<Data::Str2Num> program module is obsolete and
+superceded by the C<Data::SecsPack> program module.
 
 =head1 REQUIREMENTS
 
 Coming soon.
 
-=head1 DEMONSTRATION
-
- ~~~~~~ Demonstration overview ~~~~~
-
-Perl code begins with the prompt
-
- =>
-
-The selected results from executing the Perl Code 
-follow on the next lines. For example,
-
- => 2 + 2
- 4
-
- ~~~~~~ The demonstration follows ~~~~~
-
- =>     use File::Package;
- =>     my $fp = 'File::Package';
-
- =>     my $s2n = 'Data::Str2Num';
- =>     my $loaded;
- => my $errors = $fp->load_package($s2n)
- => $errors
- ''
-
- => $s2n->str2int('033')
- '27'
-
- => $s2n->str2int('0xFF')
- '255'
-
- => $s2n->str2int('0b1010')
- '10'
-
- => $s2n->str2int('255')
- '255'
-
- => $s2n->str2int('hello')
- undef
-
-
-=head1 QUALITY ASSURANCE
-
-The module "t::Data::Str2Num" is the Software
-Test Description(STD) module for the "Data::Str2Num".
-module. 
-
-To generate all the test output files, 
-run the generated test script,
-run the demonstration script and include it results in the "Data::Str2Num" POD,
-execute the following in any directory:
-
- tmake -test_verbose -replace -run  -pm=t::Data::Str2Num
-
-Note that F<tmake.pl> must be in the execution path C<$ENV{PATH}>
-and the "t" directory containing  "t::Data::Str2Num" on the same level as the "lib" 
-directory that contains the "Data::Str2Num" module.
 
 =head1 NOTES
 

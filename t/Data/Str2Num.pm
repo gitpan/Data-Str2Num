@@ -10,8 +10,8 @@ use warnings;
 use warnings::register;
 
 use vars qw($VERSION $DATE $FILE );
-$VERSION = '0.02';
-$DATE = '2003/07/27';
+$VERSION = '0.03';
+$DATE = '2004/04/13';
 $FILE = __FILE__;
 
 ########
@@ -40,7 +40,7 @@ $FILE = __FILE__;
 
  Version: 
 
- Date: 2003/07/27
+ Date: 2004/04/12
 
  Prepared for: General Public 
 
@@ -88,12 +88,12 @@ L<STD FormDB Test Description Fields|Test::STDmaker/STD FormDB Test Description 
   C:
      use File::Package;
      my $fp = 'File::Package';
-     my $s2n = 'Data::Str2Num';
+     my $uut = 'Data::Str2Num';
      my $loaded;
  ^
  VO: ^
   N: UUT not loaded^
-  A: $loaded = $fp->is_package_loaded($s2n)^
+  A: $loaded = $fp->is_package_loaded($uut)^
   E:  ''^
  ok: 1^
 
@@ -102,43 +102,43 @@ L<STD FormDB Test Description Fields|Test::STDmaker/STD FormDB Test Description 
   N: Load UUT^
   R: L<DataPort::DataFile/general [1] - load>^
   S: $loaded^
-  C: my $errors = $fp->load_package($s2n)^
+  C: my $errors = $fp->load_package($uut)^
   A: $errors^
  SE: ''^
  ok: 2^
 
 =head2 ok: 3
 
-  N: num2dec(\'033\')^
-  A: $s2n->str2int('033')^
+  N: str2int(\'033\')^
+  A: $uut->str2int('033')^
   E: 27^
  ok: 3^
 
 =head2 ok: 4
 
-  N: num2dec(\'0xFF\')^
-  A: $s2n->str2int('0xFF')^
+  N: str2int(\'0xFF\')^
+  A: $uut->str2int('0xFF')^
   E: 255^
  ok: 4^
 
 =head2 ok: 5
 
-  N: num2dec(\'0b1010\')^
-  A: $s2n->str2int('0b1010')^
+  N: str2int(\'0b1010\')^
+  A: $uut->str2int('0b1010')^
   E: 10^
  ok: 5^
 
 =head2 ok: 6
 
-  N: num2dec(\'255\')^
-  A: $s2n->str2int('255')^
+  N: str2int(\'255\')^
+  A: $uut->str2int('255')^
   E: 255^
  ok: 6^
 
 =head2 ok: 7
 
-  N: num2dec(\'hello\')^
-  A: $s2n->str2int('hello')^
+  N: str2int(\'hello\')^
+  A: $uut->str2int('hello')^
   E: undef^
  ok: 7^
 
@@ -269,46 +269,46 @@ Verify: Str2Num.t^
     use File::Package;
     my $fp = 'File::Package';
 
-    my $s2n = 'Data::Str2Num';
+    my $uut = 'Data::Str2Num';
     my $loaded;
 ^
 
 VO: ^
  N: UUT not loaded^
- A: $loaded = $fp->is_package_loaded($s2n)^
+ A: $loaded = $fp->is_package_loaded($uut)^
  E:  ''^
 ok: 1^
 
  N: Load UUT^
  R: L<DataPort::DataFile/general [1] - load>^
  S: $loaded^
- C: my $errors = $fp->load_package($s2n)^
+ C: my $errors = $fp->load_package($uut)^
  A: $errors^
 SE: ''^
 ok: 2^
 
- N: num2dec(\'033\')^
- A: $s2n->str2int('033')^
+ N: str2int(\'033\')^
+ A: $uut->str2int('033')^
  E: 27^
 ok: 3^
 
- N: num2dec(\'0xFF\')^
- A: $s2n->str2int('0xFF')^
+ N: str2int(\'0xFF\')^
+ A: $uut->str2int('0xFF')^
  E: 255^
 ok: 4^
 
- N: num2dec(\'0b1010\')^
- A: $s2n->str2int('0b1010')^
+ N: str2int(\'0b1010\')^
+ A: $uut->str2int('0b1010')^
  E: 10^
 ok: 5^
 
- N: num2dec(\'255\')^
- A: $s2n->str2int('255')^
+ N: str2int(\'255\')^
+ A: $uut->str2int('255')^
  E: 255^
 ok: 6^
 
- N: num2dec(\'hello\')^
- A: $s2n->str2int('hello')^
+ N: str2int(\'hello\')^
+ A: $uut->str2int('hello')^
  E: undef^
 ok: 7^
 

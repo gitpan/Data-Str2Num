@@ -10,22 +10,23 @@ use warnings;
 use warnings::register;
 
 use vars qw($VERSION $DATE $FILE );
-$VERSION = '0.03';
-$DATE = '2003/07/27';
+$VERSION = '0.04';
+$DATE = '2004/04/13';
 $FILE = __FILE__;
 
 use vars qw(%INVENTORY);
 %INVENTORY = (
-    'lib/Docs/Site_SVD/Data_Str2Num.pm' => [qw(0.03 2003/07/27), 'revised 0.02'],
-    'MANIFEST' => [qw(0.03 2003/07/27), 'generated, replaces 0.02'],
-    'Makefile.PL' => [qw(0.03 2003/07/27), 'generated, replaces 0.02'],
-    'README' => [qw(0.03 2003/07/27), 'generated, replaces 0.02'],
-    'lib/Data/Str2Num.pm' => [qw(0.02 2003/07/21), 'unchanged'],
-    't/Data/Str2Num.d' => [qw(0.01 2003/07/20), 'unchanged'],
-    't/Data/Str2Num.pm' => [qw(0.02 2003/07/27), 'revised 0.01'],
-    't/Data/Str2Num.t' => [qw(0.02 2003/07/27), 'revised 0.01'],
-    'tlib/File/Package.pm' => [qw(1.11 2003/07/27), 'new'],
-    'tlib/Test/Tech.pm' => [qw(1.11 2003/07/27), 'new'],
+    'lib/Docs/Site_SVD/Data_Str2Num.pm' => [qw(0.04 2004/04/13), 'revised 0.03'],
+    'MANIFEST' => [qw(0.04 2004/04/13), 'generated, replaces 0.03'],
+    'Makefile.PL' => [qw(0.04 2004/04/13), 'generated, replaces 0.03'],
+    'README' => [qw(0.04 2004/04/13), 'generated, replaces 0.03'],
+    'lib/Data/Str2Num.pm' => [qw(0.03 2004/04/13), 'revised 0.02'],
+    't/Data/Str2Num.d' => [qw(0.02 2004/04/13), 'revised 0.01'],
+    't/Data/Str2Num.pm' => [qw(0.03 2004/04/13), 'revised 0.02'],
+    't/Data/Str2Num.t' => [qw(0.03 2004/04/13), 'revised 0.02'],
+    't/Data/File/Package.pm' => [qw(1.15 2004/04/13), 'new'],
+    't/Data/Test/Tech.pm' => [qw(1.17 2004/04/13), 'new'],
+    't/Data/Data/Secs2.pm' => [qw(1.15 2004/04/13), 'new'],
 
 );
 
@@ -52,11 +53,11 @@ use vars qw(%INVENTORY);
 
  Data::Str2Num - convert a scalar string to an integer
 
- Revision: B
+ Revision: C
 
- Version: 0.03
+ Version: 0.04
 
- Date: 2003/07/27
+ Date: 2004/04/13
 
  Prepared for: General Public 
 
@@ -98,7 +99,7 @@ also for testing a scalar to see if it is in fact an integer scalar.
 
 =head2 1.3 Document overview.
 
-This document releases Data::Str2Num version 0.03
+This document releases Data::Str2Num version 0.04
 providing a description of the inventory, installation
 instructions and other information necessary to
 utilize and track this release.
@@ -111,12 +112,14 @@ system file specification.
 
 =head2 3.1 Inventory of materials released.
 
-This document releases the file found
-at the following repository(s):
+This document releases the file 
 
-   http://www.softwarediamonds/packages/Data-Str2Num-0.03
-   http://www.perl.com/CPAN-local/authors/id/S/SO/SOFTDIA/Data-Str2Num-0.03
+ Data-Str2Num-0.04.tar.gz
 
+found at the following repository(s):
+
+  http://www.softwarediamonds/packages/
+  http://www.perl.com/CPAN-local/authors/id/S/SO/SOFTDIA/
 
 Restrictions regarding duplication and license provisions
 are as follows:
@@ -183,16 +186,17 @@ consists of the following files:
 
  file                                                         version date       comment
  ------------------------------------------------------------ ------- ---------- ------------------------
- lib/Docs/Site_SVD/Data_Str2Num.pm                            0.03    2003/07/27 revised 0.02
- MANIFEST                                                     0.03    2003/07/27 generated, replaces 0.02
- Makefile.PL                                                  0.03    2003/07/27 generated, replaces 0.02
- README                                                       0.03    2003/07/27 generated, replaces 0.02
- lib/Data/Str2Num.pm                                          0.02    2003/07/21 unchanged
- t/Data/Str2Num.d                                             0.01    2003/07/20 unchanged
- t/Data/Str2Num.pm                                            0.02    2003/07/27 revised 0.01
- t/Data/Str2Num.t                                             0.02    2003/07/27 revised 0.01
- tlib/File/Package.pm                                         1.11    2003/07/27 new
- tlib/Test/Tech.pm                                            1.11    2003/07/27 new
+ lib/Docs/Site_SVD/Data_Str2Num.pm                            0.04    2004/04/13 revised 0.03
+ MANIFEST                                                     0.04    2004/04/13 generated, replaces 0.03
+ Makefile.PL                                                  0.04    2004/04/13 generated, replaces 0.03
+ README                                                       0.04    2004/04/13 generated, replaces 0.03
+ lib/Data/Str2Num.pm                                          0.03    2004/04/13 revised 0.02
+ t/Data/Str2Num.d                                             0.02    2004/04/13 revised 0.01
+ t/Data/Str2Num.pm                                            0.03    2004/04/13 revised 0.02
+ t/Data/Str2Num.t                                             0.03    2004/04/13 revised 0.02
+ t/Data/File/Package.pm                                       1.15    2004/04/13 new
+ t/Data/Test/Tech.pm                                          1.17    2004/04/13 new
+ t/Data/Data/Secs2.pm                                         1.15    2004/04/13 new
 
 
 =head2 3.3 Changes
@@ -221,6 +225,21 @@ The test of this module will precede immediately.
 The test support files in the tlib directory will vanish after
 the installtion.
 
+=item Data::Str2Num 0.04
+
+The lastest build of Test::STDmaker expects the test library in the same
+directory as the test script.
+Coordiated with the lastest Test::STDmaker by moving the
+test library from tlib to t/Data, the same directory as the test script
+and deleting the test library File::TestPath program module.
+
+The C<Data::Str2Num> module is now obsolete and superceded by
+the C<Data::SecsPack> module.
+Replace all subroutines to call the compatible subroutines
+in the C<Data:SecsPack> module
+and make any necessary manipulates to
+provide exact equivalent of the old C<Data::Str2Num> subroutines.
+
 =back
 
 =head2 3.4 Adaptation data.
@@ -245,22 +264,40 @@ and installation support are as follows:
 
 =item Installation Instructions.
 
-To installed the release file, use the CPAN module in the Perl release
+To installed the release file, use the CPAN module
+pr PPM module in the Perl release
 or the INSTALL.PL script at the following web site:
 
  http://packages.SoftwareDiamonds.com
 
 Follow the instructions for the the chosen installation software.
 
-The distribution file is at the following respositories:
+If all else fails, the file may be manually installed.
+Enter one of the following repositories in a web browser:
 
-   http://www.softwarediamonds/packages/Data-Str2Num-0.03
-   http://www.perl.com/CPAN-local/authors/id/S/SO/SOFTDIA/Data-Str2Num-0.03
+  http://www.softwarediamonds/packages/
+  http://www.perl.com/CPAN-local/authors/id/S/SO/SOFTDIA/
 
+Right click on 'Data-Str2Num-0.04.tar.gz' and download to a temporary
+installation directory.
+Enter the following where $make is 'nmake' for microsoft
+windows; otherwise 'make'.
+
+ gunzip Data-Str2Num-0.04.tar.gz
+ tar -xf Data-Str2Num-0.04.tar
+ perl Makefile.PL
+ $make test
+ $make install
+
+On Microsoft operating system, nmake, tar, and gunzip 
+must be in the exeuction path. If tar and gunzip are
+not install, download and install unxutils from
+
+ http://packages.softwarediamonds.com
 
 =item Prerequistes.
 
- None.
+ 'Data::SecsPack' => '0.01',
 
 
 =item Security, privacy, or safety precautions.
@@ -368,11 +405,11 @@ __DATA__
 DISTNAME: Data-Str2Num^
 REPOSITORY_DIR: packages^
 
-VERSION : 0.03^
-FREEZE: 0^
+VERSION : 0.04^
+FREEZE: 1^
 PREVIOUS_DISTNAME:  ^
-PREVIOUS_RELEASE: 0.02^
-REVISION: B^
+PREVIOUS_RELEASE: 0.03^
+REVISION: C^
 
 
 AUTHOR  : SoftwareDiamonds.com E<lt>support@SoftwareDiamonds.comE<gt>^
@@ -399,11 +436,15 @@ CHANGE2CURRENT:  ^
 AUTO_REVISE: 
 lib/Data/Str2Num.pm
 t/Data/Str2Num.*
-lib/File/Package.pm => tlib/File/Package.pm
-lib/Test/Tech.pm => tlib/Test/Tech.pm
+lib/File/Package.pm => t/Data/File/Package.pm
+lib/Test/Tech.pm => t/Data/Test/Tech.pm
+lib/Data/Secs2.pm => t/Data/Data/Secs2.pm
 ^
 
-PREREQ_PM:  ^
+PREREQ_PM:
+'Data::SecsPack' => '0.01',
+^
+README_PODS: lib/Data/Str2Num.pm^
 TESTS: t/Data/Str2Num.t^
 EXE_FILES:  ^
 
@@ -431,6 +472,21 @@ test of this module.
 The test of this module will precede immediately.
 The test support files in the tlib directory will vanish after
 the installtion.
+
+\=item Data::Str2Num 0.04
+
+The lastest build of Test::STDmaker expects the test library in the same
+directory as the test script.
+Coordiated with the lastest Test::STDmaker by moving the
+test library from tlib to t/Data, the same directory as the test script
+and deleting the test library File::TestPath program module.
+
+The C<Data::Str2Num> module is now obsolete and superceded by
+the C<Data::SecsPack> module.
+Replace all subroutines to call the compatible subroutines
+in the C<Data:SecsPack> module
+and make any necessary manipulates to
+provide exact equivalent of the old C<Data::Str2Num> subroutines.
 
 \=back
 ^
@@ -540,16 +596,38 @@ ANY WAY OUT OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
 INSTALLATION:
-To installed the release file, use the CPAN module in the Perl release
+To installed the release file, use the CPAN module
+pr PPM module in the Perl release
 or the INSTALL.PL script at the following web site:
 
  http://packages.SoftwareDiamonds.com
 
 Follow the instructions for the the chosen installation software.
 
-The distribution file is at the following respositories:
+If all else fails, the file may be manually installed.
+Enter one of the following repositories in a web browser:
 
 ${REPOSITORY}
+
+Right click on '${DIST_FILE}' and download to a temporary
+installation directory.
+Enter the following where $make is 'nmake' for microsoft
+windows; otherwise 'make'.
+
+ gunzip ${BASE_DIST_FILE}.tar.${COMPRESS_SUFFIX}
+ tar -xf ${BASE_DIST_FILE}.tar
+ perl Makefile.PL
+ $make test
+ $make install
+
+On Microsoft operating system, nmake, tar, and gunzip 
+must be in the exeuction path. If tar and gunzip are
+not install, download and install unxutils from
+
+ http://packages.softwarediamonds.com
+^
+
+SUPPORT: 603 882-0846 E<lt>support@SoftwareDiamonds.comE<gt>
 ^
 
 SUPPORT: 603 882-0846 E<lt>support@SoftwareDiamonds.comE<gt>^

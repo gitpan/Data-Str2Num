@@ -7,8 +7,8 @@ use warnings;
 use warnings::register;
 
 use vars qw($VERSION $DATE);
-$VERSION = '0.01';   # automatically generated file
-$DATE = '2003/07/20';
+$VERSION = '0.02';   # automatically generated file
+$DATE = '2004/04/13';
 
 
 ##### Demonstration Script ####
@@ -40,21 +40,30 @@ use vars qw($__restore_dir__ @__restore_inc__ );
 BEGIN {
     use Cwd;
     use File::Spec;
-    use File::TestPath;
+    use FindBin;
     use Test::Tech qw(tech_config plan demo skip_tests);
 
     ########
-    # Working directory is that of the script file
+    # The working directory for this script file is the directory where
+    # the test script resides. Thus, any relative files written or read
+    # by this test script are located relative to this test script.
     #
+    use vars qw( $__restore_dir__ );
     $__restore_dir__ = cwd();
-    my ($vol, $dirs, undef) = File::Spec->splitpath(__FILE__);
+    my ($vol, $dirs) = File::Spec->splitpath($FindBin::Bin,'nofile');
     chdir $vol if $vol;
     chdir $dirs if $dirs;
 
     #######
-    # Add the library of the unit under test (UUT) to @INC
+    # Pick up any testing program modules off this test script.
     #
-    @__restore_inc__ = File::TestPath->test_lib2inc();
+    # When testing on a target site before installation, place any test
+    # program modules that should not be installed in the same directory
+    # as this test script. Likewise, when testing on a host with a @INC
+    # restricted to just raw Perl distribution, place any test program
+    # modules in the same directory as this test script.
+    #
+    use lib $FindBin::Bin;
 
     unshift @INC, File::Spec->catdir( cwd(), 'lib' ); 
 
@@ -62,11 +71,11 @@ BEGIN {
 
 END {
 
-   #########
-   # Restore working directory and @INC back to when enter script
-   #
-   @INC = @__restore_inc__;
-   chdir $__restore_dir__;
+    #########
+    # Restore working directory and @INC back to when enter script
+    #
+    @INC = @lib::ORIG_INC;
+    chdir $__restore_dir__;
 
 }
 
@@ -91,39 +100,39 @@ MSG
 demo( "\ \ \ \ use\ File\:\:Package\;\
 \ \ \ \ my\ \$fp\ \=\ \'File\:\:Package\'\;\
 \
-\ \ \ \ my\ \$s2n\ \=\ \'Data\:\:Str2Num\'\;\
+\ \ \ \ my\ \$uut\ \=\ \'Data\:\:Str2Num\'\;\
 \ \ \ \ my\ \$loaded\;"); # typed in command           
           use File::Package;
     my $fp = 'File::Package';
 
-    my $s2n = 'Data::Str2Num';
+    my $uut = 'Data::Str2Num';
     my $loaded;; # execution
 
-demo( "my\ \$errors\ \=\ \$fp\-\>load_package\(\$s2n\)"); # typed in command           
-      my $errors = $fp->load_package($s2n); # execution
+demo( "my\ \$errors\ \=\ \$fp\-\>load_package\(\$uut\)"); # typed in command           
+      my $errors = $fp->load_package($uut); # execution
 
 demo( "\$errors", # typed in command           
       $errors # execution
 ) unless     $loaded; # condition for execution                            
 
-demo( "\$s2n\-\>str2int\(\'033\'\)", # typed in command           
-      $s2n->str2int('033')); # execution
+demo( "\$uut\-\>str2int\(\'033\'\)", # typed in command           
+      $uut->str2int('033')); # execution
 
 
-demo( "\$s2n\-\>str2int\(\'0xFF\'\)", # typed in command           
-      $s2n->str2int('0xFF')); # execution
+demo( "\$uut\-\>str2int\(\'0xFF\'\)", # typed in command           
+      $uut->str2int('0xFF')); # execution
 
 
-demo( "\$s2n\-\>str2int\(\'0b1010\'\)", # typed in command           
-      $s2n->str2int('0b1010')); # execution
+demo( "\$uut\-\>str2int\(\'0b1010\'\)", # typed in command           
+      $uut->str2int('0b1010')); # execution
 
 
-demo( "\$s2n\-\>str2int\(\'255\'\)", # typed in command           
-      $s2n->str2int('255')); # execution
+demo( "\$uut\-\>str2int\(\'255\'\)", # typed in command           
+      $uut->str2int('255')); # execution
 
 
-demo( "\$s2n\-\>str2int\(\'hello\'\)", # typed in command           
-      $s2n->str2int('hello')); # execution
+demo( "\$uut\-\>str2int\(\'hello\'\)", # typed in command           
+      $uut->str2int('hello')); # execution
 
 
 
@@ -148,15 +157,15 @@ and use in source and binary forms, with or
 without modification, provided that the 
 following conditions are met: 
 
-=over 4
+\=over 4
 
-=item 1
+\=item 1
 
 Redistributions of source code, modified or unmodified
 must retain the above copyright notice, this list of
 conditions and the following disclaimer. 
 
-=item 2
+\=item 2
 
 Redistributions in binary form must 
 reproduce the above copyright notice,
@@ -165,7 +174,7 @@ disclaimer in the documentation and/or
 other materials provided with the
 distribution.
 
-=back
+\=back
 
 SOFTWARE DIAMONDS, http://www.SoftwareDiamonds.com,
 PROVIDES THIS SOFTWARE 
