@@ -10,23 +10,23 @@ use warnings;
 use warnings::register;
 
 use vars qw($VERSION $DATE $FILE );
-$VERSION = '0.04';
-$DATE = '2004/04/13';
+$VERSION = '0.05';
+$DATE = '2004/04/25';
 $FILE = __FILE__;
 
 use vars qw(%INVENTORY);
 %INVENTORY = (
-    'lib/Docs/Site_SVD/Data_Str2Num.pm' => [qw(0.04 2004/04/13), 'revised 0.03'],
-    'MANIFEST' => [qw(0.04 2004/04/13), 'generated, replaces 0.03'],
-    'Makefile.PL' => [qw(0.04 2004/04/13), 'generated, replaces 0.03'],
-    'README' => [qw(0.04 2004/04/13), 'generated, replaces 0.03'],
-    'lib/Data/Str2Num.pm' => [qw(0.03 2004/04/13), 'revised 0.02'],
-    't/Data/Str2Num.d' => [qw(0.02 2004/04/13), 'revised 0.01'],
-    't/Data/Str2Num.pm' => [qw(0.03 2004/04/13), 'revised 0.02'],
-    't/Data/Str2Num.t' => [qw(0.03 2004/04/13), 'revised 0.02'],
-    't/Data/File/Package.pm' => [qw(1.15 2004/04/13), 'new'],
-    't/Data/Test/Tech.pm' => [qw(1.17 2004/04/13), 'new'],
-    't/Data/Data/Secs2.pm' => [qw(1.15 2004/04/13), 'new'],
+    'lib/Docs/Site_SVD/Data_Str2Num.pm' => [qw(0.05 2004/04/25), 'revised 0.04'],
+    'MANIFEST' => [qw(0.05 2004/04/25), 'generated, replaces 0.04'],
+    'Makefile.PL' => [qw(0.05 2004/04/25), 'generated, replaces 0.04'],
+    'README' => [qw(0.05 2004/04/25), 'generated, replaces 0.04'],
+    'lib/Data/Str2Num.pm' => [qw(0.04 2004/04/25), 'revised 0.03'],
+    't/Data/Str2Num.d' => [qw(0.02 2004/04/13), 'unchanged'],
+    't/Data/Str2Num.pm' => [qw(0.03 2004/04/13), 'unchanged'],
+    't/Data/Str2Num.t' => [qw(0.03 2004/04/13), 'unchanged'],
+    't/Data/File/Package.pm' => [qw(1.16 2004/04/25), 'unchanged'],
+    't/Data/Test/Tech.pm' => [qw(1.21 2004/04/25), 'revised 1.17'],
+    't/Data/Data/Secs2.pm' => [qw(1.18 2004/04/25), 'revised 1.15'],
 
 );
 
@@ -51,13 +51,13 @@ use vars qw(%INVENTORY);
 
  for
 
- Data::Str2Num - convert a scalar string to an integer
+ Data::Str2Num - Obsoleted by Data::SecsPack. int str to int; else undef. No warnings.
 
- Revision: C
+ Revision: D
 
- Version: 0.04
+ Version: 0.05
 
- Date: 2004/04/13
+ Date: 2004/04/25
 
  Prepared for: General Public 
 
@@ -99,7 +99,7 @@ also for testing a scalar to see if it is in fact an integer scalar.
 
 =head2 1.3 Document overview.
 
-This document releases Data::Str2Num version 0.04
+This document releases Data::Str2Num version 0.05
 providing a description of the inventory, installation
 instructions and other information necessary to
 utilize and track this release.
@@ -114,12 +114,12 @@ system file specification.
 
 This document releases the file 
 
- Data-Str2Num-0.04.tar.gz
+ Data-Str2Num-0.05.tar.gz
 
 found at the following repository(s):
 
   http://www.softwarediamonds/packages/
-  http://www.perl.com/CPAN-local/authors/id/S/SO/SOFTDIA/
+  http://www.perl.com/CPAN/authors/id/S/SO/SOFTDIA/
 
 Restrictions regarding duplication and license provisions
 are as follows:
@@ -186,17 +186,17 @@ consists of the following files:
 
  file                                                         version date       comment
  ------------------------------------------------------------ ------- ---------- ------------------------
- lib/Docs/Site_SVD/Data_Str2Num.pm                            0.04    2004/04/13 revised 0.03
- MANIFEST                                                     0.04    2004/04/13 generated, replaces 0.03
- Makefile.PL                                                  0.04    2004/04/13 generated, replaces 0.03
- README                                                       0.04    2004/04/13 generated, replaces 0.03
- lib/Data/Str2Num.pm                                          0.03    2004/04/13 revised 0.02
- t/Data/Str2Num.d                                             0.02    2004/04/13 revised 0.01
- t/Data/Str2Num.pm                                            0.03    2004/04/13 revised 0.02
- t/Data/Str2Num.t                                             0.03    2004/04/13 revised 0.02
- t/Data/File/Package.pm                                       1.15    2004/04/13 new
- t/Data/Test/Tech.pm                                          1.17    2004/04/13 new
- t/Data/Data/Secs2.pm                                         1.15    2004/04/13 new
+ lib/Docs/Site_SVD/Data_Str2Num.pm                            0.05    2004/04/25 revised 0.04
+ MANIFEST                                                     0.05    2004/04/25 generated, replaces 0.04
+ Makefile.PL                                                  0.05    2004/04/25 generated, replaces 0.04
+ README                                                       0.05    2004/04/25 generated, replaces 0.04
+ lib/Data/Str2Num.pm                                          0.04    2004/04/25 revised 0.03
+ t/Data/Str2Num.d                                             0.02    2004/04/13 unchanged
+ t/Data/Str2Num.pm                                            0.03    2004/04/13 unchanged
+ t/Data/Str2Num.t                                             0.03    2004/04/13 unchanged
+ t/Data/File/Package.pm                                       1.16    2004/04/25 unchanged
+ t/Data/Test/Tech.pm                                          1.21    2004/04/25 revised 1.17
+ t/Data/Data/Secs2.pm                                         1.18    2004/04/25 revised 1.15
 
 
 =head2 3.3 Changes
@@ -240,6 +240,10 @@ in the C<Data:SecsPack> module
 and make any necessary manipulates to
 provide exact equivalent of the old C<Data::Str2Num> subroutines.
 
+=item Data::Str2Num 0.05
+
+Changed the abstract to 'obsoleted by Data::Secs2'
+
 =back
 
 =head2 3.4 Adaptation data.
@@ -276,15 +280,15 @@ If all else fails, the file may be manually installed.
 Enter one of the following repositories in a web browser:
 
   http://www.softwarediamonds/packages/
-  http://www.perl.com/CPAN-local/authors/id/S/SO/SOFTDIA/
+  http://www.perl.com/CPAN/authors/id/S/SO/SOFTDIA/
 
-Right click on 'Data-Str2Num-0.04.tar.gz' and download to a temporary
+Right click on 'Data-Str2Num-0.05.tar.gz' and download to a temporary
 installation directory.
 Enter the following where $make is 'nmake' for microsoft
 windows; otherwise 'make'.
 
- gunzip Data-Str2Num-0.04.tar.gz
- tar -xf Data-Str2Num-0.04.tar
+ gunzip Data-Str2Num-0.05.tar.gz
+ tar -xf Data-Str2Num-0.05.tar
  perl Makefile.PL
  $make test
  $make install
@@ -377,7 +381,7 @@ extension for a Perl test script file
 
 =over 4
 
-=item L<Data::Str2Num|Data::Str2Num> 
+=item L<Data::SecsPack|Data::SecsPack> 
 
 =item L<Docs::US_DOD::SVD|Docs::US_DOD::SVD> 
 
@@ -405,16 +409,15 @@ __DATA__
 DISTNAME: Data-Str2Num^
 REPOSITORY_DIR: packages^
 
-VERSION : 0.04^
+VERSION : 0.05^
 FREEZE: 1^
 PREVIOUS_DISTNAME:  ^
-PREVIOUS_RELEASE: 0.03^
-REVISION: C^
-
+PREVIOUS_RELEASE: 0.04^
+REVISION: D^
 
 AUTHOR  : SoftwareDiamonds.com E<lt>support@SoftwareDiamonds.comE<gt>^
-ABSTRACT: convert a scalar string to an integer^
-TITLE   : Data::Str2Num - convert a scalar string to an integer^
+ABSTRACT: Obsoleted by Data::SecsPack. int str to int; else undef. No warnings.^
+TITLE   : Data::Str2Num - Obsoleted by Data::SecsPack. int str to int; else undef. No warnings.^
 END_USER: General Public^
 COPYRIGHT: copyright © 2003 Software Diamonds^
 CLASSIFICATION: NONE^
@@ -424,7 +427,7 @@ SVD_FSPEC: Unix^
 
 REPOSITORY: 
   http://www.softwarediamonds/packages/
-  http://www.perl.com/CPAN-local/authors/id/S/SO/SOFTDIA/
+  http://www.perl.com/CPAN/authors/id/S/SO/SOFTDIA/
 ^
 
 COMPRESS: gzip^
@@ -487,6 +490,10 @@ Replace all subroutines to call the compatible subroutines
 in the C<Data:SecsPack> module
 and make any necessary manipulates to
 provide exact equivalent of the old C<Data::Str2Num> subroutines.
+
+\=item Data::Str2Num 0.05
+
+Changed the abstract to 'obsoleted by Data::Secs2'
 
 \=back
 ^
@@ -655,7 +662,7 @@ extension for a Perl test script file
 SEE_ALSO: 
 \=over 4
 
-\=item L<Data::Str2Num|Data::Str2Num> 
+\=item L<Data::SecsPack|Data::SecsPack> 
 
 \=item L<Docs::US_DOD::SVD|Docs::US_DOD::SVD> 
 

@@ -1,96 +1,77 @@
 NAME
-    Data::Str2int - convert a scalar string to an integer
+    Data::Str2int - int, int str to int; else undef. No warnings
 
 SYNOPSIS
+     int, int str to int; else undef. No warnings.
+
      #####
      # Subroutine interface
      #  
-     use Data::Str2Num qw(str2int str2int_bytes);
+     use Data::Str2Num qw(str2int);
 
      $integer = str2int($string);
-     $integer = str2int(@strings);
-     @integers = str2int(@strings);
-
-     #####
-     # Class interface
-     #
-     use Data::Secs2;
-
-     use Data::Str2Num;
-
-     $integer = Data::Str2Num->str2int($string)
-     $integer = Data::Str2Num->str2int(@strings);
-     @integers = Data::Str2Num->str2int(@strings);
 
 DESCRIPTION
-    The "Data::Str2Num" program module is obsolete and superceded by the
-    "Data::SecsPack" program module.
+    The Data::SecsPack program module supercedes this program module. The
+    "Data::SecsPack::str2int" subroutine, in a scalar context, behaves the
+    same and supercedes C&<Data::StrInt::str2int>. In time, this module will
+    vanish.
 
-REQUIREMENTS
-    Coming soon.
+    The "str2int" subroutine translates an scalar numeric string and a
+    scalar number to a scalar integer; otherwsie it returns an "undef".
 
-NOTES
-  AUTHOR
+    Perl itself has a documented function, '0+$x', that converts a number
+    scalar so that its internal storage is an integer (See p.351, 3rd
+    Edition of Programming Perl). "If it cannot perform the conversion, it
+    leaves the integer 0." In addition the "0 +" also produces a warning.
 
-    The holder of the copyright and maintainer is
+    So how do you tell a conversion failure from the number 0? Compare the
+    output to the input? Trap the warning? Surprising not all Perls, some
+    Microsoft Perls in particular, may leave the internal storage as a
+    scalar string and do not do numeric strings. Perl 5.6 under Microsoft
+    has a broken '0+' and is no longer actively supported. It is still very
+    popular and widely used on web hosting computers.
 
-    <support@SoftwareDiamonds.com>
+    What is "$x" for the following, Perl 5.6, Microsoft:
 
-  COPYRIGHT NOTICE
+     my $x = 0 + '0x100';  # $x is 0 with a warning  
 
-    Copyrighted (c) 2002 Software Diamonds
+    The "str2int" provides a different behavior that is more usefull in many
+    situations as follows:
 
-    All Rights Reserved
+     $x = str2int('033');   # $x is 27
+     $x = str2int('0xFF');  # $x is 255
+     $x = str2int('255');   # $x is 255
+     $x = str2int('hello'); # $x is undef no warning
+     $x = str2int(0.5);     # $x is undef no warning
+     $x = str2int(1E0);     # $x is 1 
+     $x = str2int(0xf);     # $x is 15
+     $x = str2int(1E30);    # $x is undef no warning
 
-  BINDING REQUIREMENTS NOTICE
+    The "str2int" pulls out anything that resembles an integer; otherwise it
+    returns undef with no warning. This makes the "str2int" subroutine not
+    only useful for forcing an integer conversion but also for parsing
+    scalars from strings.
 
-    Binding requirements are indexed with the pharse 'shall[dd]' where dd is
-    an unique number for each header section. This conforms to standard
-    federal government practices, 490A (the 3.2.3.6 entry in the STD490A
-    manpage). In accordance with the License, Software Diamonds is not
-    liable for any requirement, binding or otherwise.
+    The Perl code is a few lines without starting any whatevers with a Perl
+    "eval" and attempting to trap all the warnings and dies, and without the
+    regular expression engine with its overhead. The code works on broken
+    Microsoft 5.6 Perls.
 
-  LICENSE
-
-    Software Diamonds permits the redistribution and use in source and
-    binary forms, with or without modification, provided that the following
-    conditions are met:
-
-    1   Redistributions of source code must retain the above copyright
-        notice, this list of conditions and the following disclaimer.
-
-    2   Redistributions in binary form must reproduce the above copyright
-        notice, this list of conditions and the following disclaimer in the
-        documentation and/or other materials provided with the distribution.
-
-    SOFTWARE DIAMONDS, http::www.softwarediamonds.com, PROVIDES THIS
-    SOFTWARE 'AS IS' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
-    NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
-    FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL SOFTWARE
-    DIAMONDS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-    SPECIAL,EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
-    TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,DATA, OR
-    PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
-    LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING USE
-    OF THIS SOFTWARE, EVEN IF ADVISED OF NEGLIGENCE OR OTHERWISE) ARISING IN
-    ANY WAY OUT OF THE POSSIBILITY OF SUCH DAMAGE.
-
-  SEE_ALSO:
-
-    File::Spec
-    Data::Str2Num
+SEE ALSO
+    Data::SecsPack
 Title Page
      Software Version Description
 
      for
 
-     Data::Str2Num - convert a scalar string to an integer
+     Data::Str2Num - Obsoleted by Data::SecsPack. int str to int; else undef. No warnings.
 
-     Revision: C
+     Revision: D
 
-     Version: 0.04
+     Version: 0.05
 
-     Date: 2004/04/13
+     Date: 2004/04/25
 
      Prepared for: General Public 
 
@@ -128,7 +109,7 @@ Title Page
 
   1.3 Document overview.
 
-    This document releases Data::Str2Num version 0.04 providing a
+    This document releases Data::Str2Num version 0.05 providing a
     description of the inventory, installation instructions and other
     information necessary to utilize and track this release.
 
@@ -140,12 +121,12 @@ Title Page
 
     This document releases the file
 
-     Data-Str2Num-0.04.tar.gz
+     Data-Str2Num-0.05.tar.gz
 
     found at the following repository(s):
 
       http://www.softwarediamonds/packages/
-      http://www.perl.com/CPAN-local/authors/id/S/SO/SOFTDIA/
+      http://www.perl.com/CPAN/authors/id/S/SO/SOFTDIA/
 
     Restrictions regarding duplication and license provisions are as
     follows:
@@ -190,17 +171,17 @@ Title Page
 
      file                                                         version date       comment
      ------------------------------------------------------------ ------- ---------- ------------------------
-     lib/Docs/Site_SVD/Data_Str2Num.pm                            0.04    2004/04/13 revised 0.03
-     MANIFEST                                                     0.04    2004/04/13 generated, replaces 0.03
-     Makefile.PL                                                  0.04    2004/04/13 generated, replaces 0.03
-     README                                                       0.04    2004/04/13 generated, replaces 0.03
-     lib/Data/Str2Num.pm                                          0.03    2004/04/13 revised 0.02
-     t/Data/Str2Num.d                                             0.02    2004/04/13 revised 0.01
-     t/Data/Str2Num.pm                                            0.03    2004/04/13 revised 0.02
-     t/Data/Str2Num.t                                             0.03    2004/04/13 revised 0.02
-     t/Data/File/Package.pm                                       1.15    2004/04/13 new
-     t/Data/Test/Tech.pm                                          1.17    2004/04/13 new
-     t/Data/Data/Secs2.pm                                         1.15    2004/04/13 new
+     lib/Docs/Site_SVD/Data_Str2Num.pm                            0.05    2004/04/25 revised 0.04
+     MANIFEST                                                     0.05    2004/04/25 generated, replaces 0.04
+     Makefile.PL                                                  0.05    2004/04/25 generated, replaces 0.04
+     README                                                       0.05    2004/04/25 generated, replaces 0.04
+     lib/Data/Str2Num.pm                                          0.04    2004/04/25 revised 0.03
+     t/Data/Str2Num.d                                             0.02    2004/04/13 unchanged
+     t/Data/Str2Num.pm                                            0.03    2004/04/13 unchanged
+     t/Data/Str2Num.t                                             0.03    2004/04/13 unchanged
+     t/Data/File/Package.pm                                       1.16    2004/04/25 unchanged
+     t/Data/Test/Tech.pm                                          1.21    2004/04/25 revised 1.17
+     t/Data/Data/Secs2.pm                                         1.18    2004/04/25 revised 1.15
 
   3.3 Changes
 
@@ -235,6 +216,9 @@ Title Page
         necessary manipulates to provide exact equivalent of the old
         "Data::Str2Num" subroutines.
 
+    Data::Str2Num 0.05
+        Changed the abstract to 'obsoleted by Data::Secs2'
+
   3.4 Adaptation data.
 
     This installation requires that the installation site has the Perl
@@ -265,14 +249,14 @@ Title Page
         the following repositories in a web browser:
 
           http://www.softwarediamonds/packages/
-          http://www.perl.com/CPAN-local/authors/id/S/SO/SOFTDIA/
+          http://www.perl.com/CPAN/authors/id/S/SO/SOFTDIA/
 
-        Right click on 'Data-Str2Num-0.04.tar.gz' and download to a
+        Right click on 'Data-Str2Num-0.05.tar.gz' and download to a
         temporary installation directory. Enter the following where $make is
         'nmake' for microsoft windows; otherwise 'make'.
 
-         gunzip Data-Str2Num-0.04.tar.gz
-         tar -xf Data-Str2Num-0.04.tar
+         gunzip Data-Str2Num-0.05.tar.gz
+         tar -xf Data-Str2Num-0.05.tar
          perl Makefile.PL
          $make test
          $make install
@@ -327,5 +311,5 @@ Title Page
     .t  extension for a Perl test script file
 
 2.0 SEE ALSO
-    Data::Str2Num
+    Data::SecsPack
     Docs::US_DOD::SVD

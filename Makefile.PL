@@ -23,7 +23,7 @@ my $tests = join ' ',unix2os('t/Data/Str2Num.t');
 WriteMakefile(
     NAME => 'Data::Str2Num',
     DISTNAME => 'Data-Str2Num',
-    VERSION  => '0.04',
+    VERSION  => '0.05',
     dist     => {COMPRESS => 'gzip',
                 'gz' => 'gz'},
     test     => {TESTS => $tests},
@@ -32,7 +32,7 @@ WriteMakefile(
 
     ($] >= 5.005 ?     
         (AUTHOR    => 'SoftwareDiamonds.com E<lt>support@SoftwareDiamonds.comE<gt>',
-        ABSTRACT  => 'convert a scalar string to an integer', ) : ()),
+        ABSTRACT  => 'Obsoleted by Data::SecsPack. int str to int; else undef. No warnings.', ) : ()),
 );
 
 

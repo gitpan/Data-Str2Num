@@ -14,8 +14,8 @@ use warnings::register;
 # Connect up with the event log.
 #
 use vars qw( $VERSION $DATE $FILE);
-$VERSION = '0.03';
-$DATE = '2004/04/13';
+$VERSION = '0.04';
+$DATE = '2004/04/25';
 $FILE = __FILE__;
 
 use vars qw(@ISA @EXPORT_OK);
@@ -26,154 +26,100 @@ require Exporter;
 use Data::SecsPack;
 
 ######
-# Convert number (oct, bin, hex, decimal) to decimal
+# 
 #
 sub str2int
 {
      shift if UNIVERSAL::isa($_[0],__PACKAGE__);
-     ####  
-     # do no let the wantarray kink in
-     my $num = Data::SecsPack->str2int(@_); 
+     my $num = Data::SecsPack->str2int(@_); # force scalar context
      $num;  
 }
-
 
 1
 
 __END__
 
-
 =head1 NAME
 
-Data::Str2int - convert a scalar string to an integer
+Data::Str2int - int, int str to int; else undef. No warnings
 
 =head1 SYNOPSIS
+
+ int, int str to int; else undef. No warnings.
 
  #####
  # Subroutine interface
  #  
- use Data::Str2Num qw(str2int str2int_bytes);
+ use Data::Str2Num qw(str2int);
 
  $integer = str2int($string);
- $integer = str2int(@strings);
- @integers = str2int(@strings);
-
- #####
- # Class interface
- #
- use Data::Secs2;
-
- use Data::Str2Num;
-
- $integer = Data::Str2Num->str2int($string)
- $integer = Data::Str2Num->str2int(@strings);
- @integers = Data::Str2Num->str2int(@strings);
-
 
 =head1 DESCRIPTION
 
-The C<Data::Str2Num> program module is obsolete and
-superceded by the C<Data::SecsPack> program module.
+The L<Data::SecsPack|Data::SecsPack> program module
+supercedes this program module. 
+The C<Data::SecsPack::str2int> subroutine,
+in a scalar context, behaves the same and 
+supercedes C&<Data::StrInt::str2int>.
+In time, this module will vanish.
 
-=head1 REQUIREMENTS
+The C<str2int> subroutine translates an scalar numeric string 
+and a scalar number to a scalar integer; otherwsie it returns
+an C<undef>.
 
-Coming soon.
+Perl itself has a documented function, '0+$x', that converts 
+a number scalar 
+so that its internal storage is an integer
+(See p.351, 3rd Edition of Programming Perl).
+"If it cannot perform the conversion, it leaves the integer 0."
+In addition the C<0 +> also produces a warning.
 
+So how do you tell a conversion failure from the number 0?
+Compare the output to the input?
+Trap the warning?
+Surprising not all Perls, some Microsoft Perls in particular, may leave
+the internal storage as a scalar string and do not do numeric strings.
+Perl 5.6 under Microsoft has a broken '0+' and is
+no longer actively supported.
+It is still very popular and widely used on web hosting computers.
 
-=head1 NOTES
+What is C<$x> for the following, Perl 5.6, Microsoft:
 
-=head2 AUTHOR
+ my $x = 0 + '0x100';  # $x is 0 with a warning  
 
-The holder of the copyright and maintainer is
+The C<str2int> provides a different behavior that
+is more usefull in many situations as follows:
 
-E<lt>support@SoftwareDiamonds.comE<gt>
+ $x = str2int('033');   # $x is 27
+ $x = str2int('0xFF');  # $x is 255
+ $x = str2int('255');   # $x is 255
+ $x = str2int('hello'); # $x is undef no warning
+ $x = str2int(0.5);     # $x is undef no warning
+ $x = str2int(1E0);     # $x is 1 
+ $x = str2int(0xf);     # $x is 15
+ $x = str2int(1E30);    # $x is undef no warning
 
-=head2 COPYRIGHT NOTICE
+The C<str2int> pulls out
+anything that resembles an integer; otherwise it returns undef
+with no warning.
+This makes the C<str2int> subroutine not only useful for forcing an
+integer conversion but also for parsing scalars from
+strings. 
 
-Copyrighted (c) 2002 Software Diamonds
+The Perl code is a few lines without starting any whatevers
+with a Perl C<eval> and attempting to trap all the warnings
+and dies, and without the regular expression 
+engine with its overhead.
+The code works on broken Microsoft 5.6 Perls.
 
-All Rights Reserved
-
-=head2 BINDING REQUIREMENTS NOTICE
-
-Binding requirements are indexed with the
-pharse 'shall[dd]' where dd is an unique number
-for each header section.
-This conforms to standard federal
-government practices, 490A (L<STD490A/3.2.3.6>).
-In accordance with the License, Software Diamonds
-is not liable for any requirement, binding or otherwise.
-
-=head2 LICENSE
-
-Software Diamonds permits the redistribution
-and use in source and binary forms, with or
-without modification, provided that the 
-following conditions are met: 
-
-=over 4
-
-=item 1
-
-Redistributions of source code must retain
-the above copyright notice, this list of
-conditions and the following disclaimer. 
-
-=item 2
-
-Redistributions in binary form must 
-reproduce the above copyright notice,
-this list of conditions and the following 
-disclaimer in the documentation and/or
-other materials provided with the
-distribution.
-
-=back
-
-SOFTWARE DIAMONDS, http::www.softwarediamonds.com,
-PROVIDES THIS SOFTWARE 
-'AS IS' AND ANY EXPRESS OR IMPLIED WARRANTIES,
-INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT
-SHALL SOFTWARE DIAMONDS BE LIABLE FOR ANY DIRECT,
-INDIRECT, INCIDENTAL, SPECIAL,EXEMPLARY, OR 
-CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
-TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-LOSS OF USE,DATA, OR PROFITS; OR BUSINESS
-INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
-OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-OR TORT (INCLUDING USE OF THIS SOFTWARE, EVEN IF
-ADVISED OF NEGLIGENCE OR OTHERWISE) ARISING IN
-ANY WAY OUT OF THE POSSIBILITY OF SUCH DAMAGE. 
-
-=head2 SEE_ALSO:
+=head1 SEE ALSO
 
 =over 4
 
-=item L<File::Spec|File::Spec>
-
-=item L<Data::Str2Num|Data::Str2Num>
+=item L<Data::SecsPack|Data::SecsPack> 
 
 =back
-
-=for html
-<p><br>
-<!-- BLK ID="NOTICE" -->
-<!-- /BLK -->
-<p><br>
-<!-- BLK ID="OPT-IN" -->
-<!-- /BLK -->
-<p><br>
-<!-- BLK ID="EMAIL" -->
-<!-- /BLK -->
-<p><br>
-<!-- BLK ID="COPYRIGHT" -->
-<!-- /BLK -->
-<p><br>
-<!-- BLK ID="LOG_CGI" -->
-<!-- /BLK -->
-<p><br>
 
 =cut
+
 ### end of script  ######
