@@ -10,20 +10,22 @@ use warnings;
 use warnings::register;
 
 use vars qw($VERSION $DATE $FILE );
-$VERSION = '0.02';
-$DATE = '2003/07/21';
+$VERSION = '0.03';
+$DATE = '2003/07/27';
 $FILE = __FILE__;
 
 use vars qw(%INVENTORY);
 %INVENTORY = (
-    'lib/Docs/Site_SVD/Data_Str2Num.pm' => [qw(0.02 2003/07/21), 'revised 0.01'],
-    'MANIFEST' => [qw(0.02 2003/07/21), 'generated, replaces 0.01'],
-    'Makefile.PL' => [qw(0.02 2003/07/21), 'generated, replaces 0.01'],
-    'README' => [qw(0.02 2003/07/21), 'generated, replaces 0.01'],
-    'lib/Data/Str2Num.pm' => [qw(0.02 2003/07/21), 'revised 0.01'],
+    'lib/Docs/Site_SVD/Data_Str2Num.pm' => [qw(0.03 2003/07/27), 'revised 0.02'],
+    'MANIFEST' => [qw(0.03 2003/07/27), 'generated, replaces 0.02'],
+    'Makefile.PL' => [qw(0.03 2003/07/27), 'generated, replaces 0.02'],
+    'README' => [qw(0.03 2003/07/27), 'generated, replaces 0.02'],
+    'lib/Data/Str2Num.pm' => [qw(0.02 2003/07/21), 'unchanged'],
     't/Data/Str2Num.d' => [qw(0.01 2003/07/20), 'unchanged'],
-    't/Data/Str2Num.pm' => [qw(0.01 2003/07/20), 'unchanged'],
-    't/Data/Str2Num.t' => [qw(0.01 2003/07/20), 'unchanged'],
+    't/Data/Str2Num.pm' => [qw(0.02 2003/07/27), 'revised 0.01'],
+    't/Data/Str2Num.t' => [qw(0.02 2003/07/27), 'revised 0.01'],
+    'tlib/File/Package.pm' => [qw(1.11 2003/07/27), 'new'],
+    'tlib/Test/Tech.pm' => [qw(1.11 2003/07/27), 'new'],
 
 );
 
@@ -50,11 +52,11 @@ use vars qw(%INVENTORY);
 
  Data::Str2Num - convert a scalar string to an integer
 
- Revision: A
+ Revision: B
 
- Version: 0.02
+ Version: 0.03
 
- Date: 2003/07/21
+ Date: 2003/07/27
 
  Prepared for: General Public 
 
@@ -96,7 +98,7 @@ also for testing a scalar to see if it is in fact an integer scalar.
 
 =head2 1.3 Document overview.
 
-This document releases Data::Str2Num version 0.02
+This document releases Data::Str2Num version 0.03
 providing a description of the inventory, installation
 instructions and other information necessary to
 utilize and track this release.
@@ -112,8 +114,8 @@ system file specification.
 This document releases the file found
 at the following repository(s):
 
-   http://www.softwarediamonds/packages/Data-Str2Num-0.02
-   http://www.perl.com/CPAN-local/authors/id/S/SO/SOFTDIA/Data-Str2Num-0.02
+   http://www.softwarediamonds/packages/Data-Str2Num-0.03
+   http://www.perl.com/CPAN-local/authors/id/S/SO/SOFTDIA/Data-Str2Num-0.03
 
 
 Restrictions regarding duplication and license provisions
@@ -181,14 +183,16 @@ consists of the following files:
 
  file                                                         version date       comment
  ------------------------------------------------------------ ------- ---------- ------------------------
- lib/Docs/Site_SVD/Data_Str2Num.pm                            0.02    2003/07/21 revised 0.01
- MANIFEST                                                     0.02    2003/07/21 generated, replaces 0.01
- Makefile.PL                                                  0.02    2003/07/21 generated, replaces 0.01
- README                                                       0.02    2003/07/21 generated, replaces 0.01
- lib/Data/Str2Num.pm                                          0.02    2003/07/21 revised 0.01
+ lib/Docs/Site_SVD/Data_Str2Num.pm                            0.03    2003/07/27 revised 0.02
+ MANIFEST                                                     0.03    2003/07/27 generated, replaces 0.02
+ Makefile.PL                                                  0.03    2003/07/27 generated, replaces 0.02
+ README                                                       0.03    2003/07/27 generated, replaces 0.02
+ lib/Data/Str2Num.pm                                          0.02    2003/07/21 unchanged
  t/Data/Str2Num.d                                             0.01    2003/07/20 unchanged
- t/Data/Str2Num.pm                                            0.01    2003/07/20 unchanged
- t/Data/Str2Num.t                                             0.01    2003/07/20 unchanged
+ t/Data/Str2Num.pm                                            0.02    2003/07/27 revised 0.01
+ t/Data/Str2Num.t                                             0.02    2003/07/27 revised 0.01
+ tlib/File/Package.pm                                         1.11    2003/07/27 new
+ tlib/Test/Tech.pm                                            1.11    2003/07/27 new
 
 
 =head2 3.3 Changes
@@ -205,6 +209,17 @@ Originated
 
 Added 1 to end of the code section. 
 Unix Perls very strict about this one.
+
+=item Data::Str2Num 0.03
+
+Change the test so that test support program modules resides in distribution
+directory tlib directory instead of the lib directory. 
+Because they are no longer in the lib directory, 
+test support files will not be installed as a pre-condition for the 
+test of this module.
+The test of this module will precede immediately.
+The test support files in the tlib directory will vanish after
+the installtion.
 
 =back
 
@@ -239,16 +254,13 @@ Follow the instructions for the the chosen installation software.
 
 The distribution file is at the following respositories:
 
-   http://www.softwarediamonds/packages/Data-Str2Num-0.02
-   http://www.perl.com/CPAN-local/authors/id/S/SO/SOFTDIA/Data-Str2Num-0.02
+   http://www.softwarediamonds/packages/Data-Str2Num-0.03
+   http://www.perl.com/CPAN-local/authors/id/S/SO/SOFTDIA/Data-Str2Num-0.03
 
 
 =item Prerequistes.
 
- 'File::TestPath' => '1.1',
- 'File::SmartNL' => '1.1',
- 'File::Package' => '1.1',
- 'Test::Tech' => '1.08',
+ None.
 
 
 =item Security, privacy, or safety precautions.
@@ -326,7 +338,13 @@ extension for a Perl test script file
 
 =head1 2.0 SEE ALSO
 
-L<Data::Str2Num|Data::Str2Num>
+=over 4
+
+=item L<Data::Str2Num|Data::Str2Num> 
+
+=item L<Docs::US_DOD::SVD|Docs::US_DOD::SVD> 
+
+=back
 
 =for html
 <hr>
@@ -350,11 +368,11 @@ __DATA__
 DISTNAME: Data-Str2Num^
 REPOSITORY_DIR: packages^
 
-VERSION : 0.02^
-FREEZE: 1^
+VERSION : 0.03^
+FREEZE: 0^
 PREVIOUS_DISTNAME:  ^
-PREVIOUS_RELEASE: 0.01^
-REVISION: A^
+PREVIOUS_RELEASE: 0.02^
+REVISION: B^
 
 
 AUTHOR  : SoftwareDiamonds.com E<lt>support@SoftwareDiamonds.comE<gt>^
@@ -376,23 +394,17 @@ COMPRESS: gzip^
 COMPRESS_SUFFIX: gz^
 
 RESTRUCTURE:  ^
-
 CHANGE2CURRENT:  ^
 
 AUTO_REVISE: 
 lib/Data/Str2Num.pm
 t/Data/Str2Num.*
+lib/File/Package.pm => tlib/File/Package.pm
+lib/Test/Tech.pm => tlib/Test/Tech.pm
 ^
 
-PREREQ_PM:
-'File::TestPath' => '1.1',
-'File::SmartNL' => '1.1',
-'File::Package' => '1.1',
-'Test::Tech' => '1.08',
-^
-
+PREREQ_PM:  ^
 TESTS: t/Data/Str2Num.t^
-
 EXE_FILES:  ^
 
 CHANGES: 
@@ -408,6 +420,17 @@ Originated
 
 Added 1 to end of the code section. 
 Unix Perls very strict about this one.
+
+\=item Data::Str2Num 0.03
+
+Change the test so that test support program modules resides in distribution
+directory tlib directory instead of the lib directory. 
+Because they are no longer in the lib directory, 
+test support files will not be installed as a pre-condition for the 
+test of this module.
+The test of this module will precede immediately.
+The test support files in the tlib directory will vanish after
+the installtion.
 
 \=back
 ^
@@ -551,11 +574,16 @@ extension for a Perl test script file
 \=back
 ^
 
-SEE_ALSO:
+SEE_ALSO: 
+\=over 4
 
-L<Data::Str2Num|Data::Str2Num>
+\=item L<Data::Str2Num|Data::Str2Num> 
 
+\=item L<Docs::US_DOD::SVD|Docs::US_DOD::SVD> 
+
+\=back
 ^
+
 
 HTML:
 <hr>

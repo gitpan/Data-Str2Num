@@ -23,14 +23,11 @@ my $tests = join ' ',unix2os('t/Data/Str2Num.t');
 WriteMakefile(
     NAME => 'Data::Str2Num',
     DISTNAME => 'Data-Str2Num',
-    VERSION  => '0.02',
+    VERSION  => '0.03',
     dist     => {COMPRESS => 'gzip',
                 'gz' => 'gz'},
     test     => {TESTS => $tests},
-    PREREQ_PM => {'File::TestPath' => '1.1',
-                  'File::SmartNL' => '1.1',
-                  'File::Package' => '1.1',
-                  'Test::Tech' => '1.08',},
+    
     
 
     ($] >= 5.005 ?     
