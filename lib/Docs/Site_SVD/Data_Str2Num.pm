@@ -10,20 +10,20 @@ use warnings;
 use warnings::register;
 
 use vars qw($VERSION $DATE $FILE );
-$VERSION = '0.01';
-$DATE = '2003/07/20';
+$VERSION = '0.02';
+$DATE = '2003/07/21';
 $FILE = __FILE__;
 
 use vars qw(%INVENTORY);
 %INVENTORY = (
-    'lib/Docs/Site_SVD/Data_Str2Num.pm' => [qw(0.01 2003/07/20), 'new'],
-    'MANIFEST' => [qw(0.01 2003/07/20), 'generated new'],
-    'Makefile.PL' => [qw(0.01 2003/07/20), 'generated new'],
-    'README' => [qw(0.01 2003/07/20), 'generated new'],
-    'lib/Data/Str2Num.pm' => [qw(0.01 2003/07/20), 'new'],
-    't/Data/Str2Num.d' => [qw(0.01 2003/07/20), 'new'],
-    't/Data/Str2Num.pm' => [qw(0.01 2003/07/20), 'new'],
-    't/Data/Str2Num.t' => [qw(0.01 2003/07/20), 'new'],
+    'lib/Docs/Site_SVD/Data_Str2Num.pm' => [qw(0.02 2003/07/21), 'revised 0.01'],
+    'MANIFEST' => [qw(0.02 2003/07/21), 'generated, replaces 0.01'],
+    'Makefile.PL' => [qw(0.02 2003/07/21), 'generated, replaces 0.01'],
+    'README' => [qw(0.02 2003/07/21), 'generated, replaces 0.01'],
+    'lib/Data/Str2Num.pm' => [qw(0.02 2003/07/21), 'revised 0.01'],
+    't/Data/Str2Num.d' => [qw(0.01 2003/07/20), 'unchanged'],
+    't/Data/Str2Num.pm' => [qw(0.01 2003/07/20), 'unchanged'],
+    't/Data/Str2Num.t' => [qw(0.01 2003/07/20), 'unchanged'],
 
 );
 
@@ -50,11 +50,11 @@ use vars qw(%INVENTORY);
 
  Data::Str2Num - convert a scalar string to an integer
 
- Revision: -
+ Revision: A
 
- Version: 0.01
+ Version: 0.02
 
- Date: 2003/07/20
+ Date: 2003/07/21
 
  Prepared for: General Public 
 
@@ -96,7 +96,7 @@ also for testing a scalar to see if it is in fact an integer scalar.
 
 =head2 1.3 Document overview.
 
-This document releases Data::Str2Num version 0.01
+This document releases Data::Str2Num version 0.02
 providing a description of the inventory, installation
 instructions and other information necessary to
 utilize and track this release.
@@ -112,8 +112,8 @@ system file specification.
 This document releases the file found
 at the following repository(s):
 
-   http://www.softwarediamonds/packages/Data-Str2Num-0.01
-   http://www.perl.com/CPAN-local/authors/id/S/SO/SOFTDIA/Data-Str2Num-0.01
+   http://www.softwarediamonds/packages/Data-Str2Num-0.02
+   http://www.perl.com/CPAN-local/authors/id/S/SO/SOFTDIA/Data-Str2Num-0.02
 
 
 Restrictions regarding duplication and license provisions
@@ -181,14 +181,14 @@ consists of the following files:
 
  file                                                         version date       comment
  ------------------------------------------------------------ ------- ---------- ------------------------
- lib/Docs/Site_SVD/Data_Str2Num.pm                            0.01    2003/07/20 new
- MANIFEST                                                     0.01    2003/07/20 generated new
- Makefile.PL                                                  0.01    2003/07/20 generated new
- README                                                       0.01    2003/07/20 generated new
- lib/Data/Str2Num.pm                                          0.01    2003/07/20 new
- t/Data/Str2Num.d                                             0.01    2003/07/20 new
- t/Data/Str2Num.pm                                            0.01    2003/07/20 new
- t/Data/Str2Num.t                                             0.01    2003/07/20 new
+ lib/Docs/Site_SVD/Data_Str2Num.pm                            0.02    2003/07/21 revised 0.01
+ MANIFEST                                                     0.02    2003/07/21 generated, replaces 0.01
+ Makefile.PL                                                  0.02    2003/07/21 generated, replaces 0.01
+ README                                                       0.02    2003/07/21 generated, replaces 0.01
+ lib/Data/Str2Num.pm                                          0.02    2003/07/21 revised 0.01
+ t/Data/Str2Num.d                                             0.01    2003/07/20 unchanged
+ t/Data/Str2Num.pm                                            0.01    2003/07/20 unchanged
+ t/Data/Str2Num.t                                             0.01    2003/07/20 unchanged
 
 
 =head2 3.3 Changes
@@ -201,6 +201,10 @@ Changes are as follows:
 
 Originated
 
+=item Data::Str2Num 0.02
+
+Added 1 to end of the code section. 
+Unix Perls very strict about this one.
 
 =back
 
@@ -235,15 +239,15 @@ Follow the instructions for the the chosen installation software.
 
 The distribution file is at the following respositories:
 
-   http://www.softwarediamonds/packages/Data-Str2Num-0.01
-   http://www.perl.com/CPAN-local/authors/id/S/SO/SOFTDIA/Data-Str2Num-0.01
+   http://www.softwarediamonds/packages/Data-Str2Num-0.02
+   http://www.perl.com/CPAN-local/authors/id/S/SO/SOFTDIA/Data-Str2Num-0.02
 
 
 =item Prerequistes.
 
- 'File::TestPath' => '0',
- 'File::SmartNL' => '0',
- 'File::Package' => '0',
+ 'File::TestPath' => '1.1',
+ 'File::SmartNL' => '1.1',
+ 'File::Package' => '1.1',
  'Test::Tech' => '1.08',
 
 
@@ -346,11 +350,11 @@ __DATA__
 DISTNAME: Data-Str2Num^
 REPOSITORY_DIR: packages^
 
-VERSION : 0.01^
+VERSION : 0.02^
 FREEZE: 1^
 PREVIOUS_DISTNAME:  ^
-PREVIOUS_RELEASE:  ^
-REVISION: -^
+PREVIOUS_RELEASE: 0.01^
+REVISION: A^
 
 
 AUTHOR  : SoftwareDiamonds.com E<lt>support@SoftwareDiamonds.comE<gt>^
@@ -381,9 +385,9 @@ t/Data/Str2Num.*
 ^
 
 PREREQ_PM:
-'File::TestPath' => '0',
-'File::SmartNL' => '0',
-'File::Package' => '0',
+'File::TestPath' => '1.1',
+'File::SmartNL' => '1.1',
+'File::Package' => '1.1',
 'Test::Tech' => '1.08',
 ^
 
@@ -400,6 +404,10 @@ Changes are as follows:
 
 Originated
 
+\=item Data::Str2Num 0.02
+
+Added 1 to end of the code section. 
+Unix Perls very strict about this one.
 
 \=back
 ^

@@ -14,8 +14,8 @@ use warnings::register;
 # Connect up with the event log.
 #
 use vars qw( $VERSION $DATE $FILE);
-$VERSION = '0.01';
-$DATE = '2003/07/20';
+$VERSION = '0.02';
+$DATE = '2003/07/21';
 $FILE = __FILE__;
 
 use vars qw(@ISA @EXPORT_OK);
@@ -39,6 +39,7 @@ sub str2int
 
 }
 
+1
 
 __END__
 
@@ -60,7 +61,7 @@ Data::Str2int - convert a scalar string to an integer
 
 =head1 DESCRIPTION
 
-The "Data::Str2int" module translates an scalar string to a scalar integer.
+The "Data::Str2Num" module translates an scalar string to a scalar integer.
 Perl itself has a documented function, '0+$x', that converts a scalar to
 so that its internal storage is an integer
 (See p.351, 3rd Edition of Programming Perl).
