@@ -6,7 +6,7 @@ SYNOPSIS
      #####
      # Subroutine interface
      #  
-     use Data::SecsPack qw(config str2float str2int str2integer);
+     use Data::Str2Num qw(config str2float str2int str2integer);
 
      $float = str2float($string, [@options]);
      (\@strings, @floats) = str2float(@strings, [@options]);
@@ -72,6 +72,14 @@ DESCRIPTION
     In a scalar context, it parse out any type of $number in the leading
     "$string". This is especially useful for "$string" that is certain to
     have a single number.
+
+  str2int
+
+     $integer = $secspack->str2int($string);
+
+    The "str2int" subroutine is the same as the "str2integer" subroutine
+    except that that the subroutine always returns the scalar processing
+    "str2integer" subroutine.
 
   str2integer
 
@@ -379,9 +387,9 @@ Title Page
 
      Revision: D
 
-     Version: 0.06
+     Version: 0.07
 
-     Date: 2004/05/19
+     Date: 2004/05/22
 
      Prepared for: General Public 
 
@@ -422,7 +430,7 @@ Title Page
 
   1.3 Document overview.
 
-    This document releases Data::Str2Num version 0.06 providing a
+    This document releases Data::Str2Num version 0.07 providing a
     description of the inventory, installation instructions and other
     information necessary to utilize and track this release.
 
@@ -434,7 +442,7 @@ Title Page
 
     This document releases the file
 
-     Data-Str2Num-0.06.tar.gz
+     Data-Str2Num-0.07.tar.gz
 
     found at the following repository(s):
 
@@ -490,18 +498,18 @@ Title Page
 
      file                                                         version date       comment
      ------------------------------------------------------------ ------- ---------- ------------------------
-     lib/Docs/Site_SVD/Data_Str2Num.pm                            0.06    2004/05/19 revised 0.05
-     MANIFEST                                                     0.06    2004/05/19 generated, replaces 0.05
-     Makefile.PL                                                  0.06    2004/05/19 generated, replaces 0.05
-     README                                                       0.06    2004/05/19 generated, replaces 0.05
-     lib/Data/Str2Num.pm                                          0.05    2004/05/19 revised 0.04
-     t/Data/Str2Num.d                                             0.03    2004/05/19 revised 0.02
-     t/Data/Str2Num.pm                                            0.04    2004/05/19 revised 0.03
-     t/Data/Str2Num.t                                             0.04    2004/05/19 revised 0.03
-     t/Data/File/Package.pm                                       1.17    2004/05/19 revised 1.15
-     t/Data/Test/Tech.pm                                          1.26    2004/05/19 revised 1.21
-     t/Data/Data/Secs2.pm                                         1.23    2004/05/19 revised 1.18
-     t/Data/Data/Startup.pm                                       0.06    2004/05/19 new
+     lib/Docs/Site_SVD/Data_Str2Num.pm                            0.07    2004/05/22 revised 0.06
+     MANIFEST                                                     0.07    2004/05/22 generated, replaces 0.06
+     Makefile.PL                                                  0.07    2004/05/22 generated, replaces 0.06
+     README                                                       0.07    2004/05/22 generated, replaces 0.06
+     lib/Data/Str2Num.pm                                          0.08    2004/05/22 revised 0.05
+     t/Data/Str2Num.d                                             0.03    2004/05/19 unchanged
+     t/Data/Str2Num.pm                                            0.04    2004/05/19 unchanged
+     t/Data/Str2Num.t                                             0.04    2004/05/19 unchanged
+     t/Data/File/Package.pm                                       1.17    2004/05/22 unchanged
+     t/Data/Test/Tech.pm                                          1.26    2004/05/22 unchanged
+     t/Data/Data/Secs2.pm                                         1.26    2004/05/22 revised 1.23
+     t/Data/Data/Startup.pm                                       0.07    2004/05/22 revised 0.06
 
   3.3 Changes
 
@@ -547,6 +555,12 @@ Title Page
         with all that SEMI business if one just needs the functionality of
         these subroutines.
 
+    Data::Str2Num 0.07
+        In "str2integer" and "str2float" subroutine, skip empty and undef
+        strings. Processing produces all kinds of uninitialize errors.
+
+        Add documentation for the "str2int" subroutine.
+
   3.4 Adaptation data.
 
     This installation requires that the installation site has the Perl
@@ -579,12 +593,12 @@ Title Page
           http://www.softwarediamonds/packages/
           http://www.perl.com/CPAN/authors/id/S/SO/SOFTDIA/
 
-        Right click on 'Data-Str2Num-0.06.tar.gz' and download to a
+        Right click on 'Data-Str2Num-0.07.tar.gz' and download to a
         temporary installation directory. Enter the following where $make is
         'nmake' for microsoft windows; otherwise 'make'.
 
-         gunzip Data-Str2Num-0.06.tar.gz
-         tar -xf Data-Str2Num-0.06.tar
+         gunzip Data-Str2Num-0.07.tar.gz
+         tar -xf Data-Str2Num-0.07.tar
          perl Makefile.PL
          $make test
          $make install
@@ -596,7 +610,7 @@ Title Page
          http://packages.softwarediamonds.com
 
     Prerequistes.
-         'Data::SecsPack' => '0.01',
+         None.
 
     Security, privacy, or safety precautions.
         None.

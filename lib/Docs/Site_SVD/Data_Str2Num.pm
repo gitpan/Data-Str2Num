@@ -10,24 +10,24 @@ use warnings;
 use warnings::register;
 
 use vars qw($VERSION $DATE $FILE );
-$VERSION = '0.06';
-$DATE = '2004/05/19';
+$VERSION = '0.07';
+$DATE = '2004/05/22';
 $FILE = __FILE__;
 
 use vars qw(%INVENTORY);
 %INVENTORY = (
-    'lib/Docs/Site_SVD/Data_Str2Num.pm' => [qw(0.06 2004/05/19), 'revised 0.05'],
-    'MANIFEST' => [qw(0.06 2004/05/19), 'generated, replaces 0.05'],
-    'Makefile.PL' => [qw(0.06 2004/05/19), 'generated, replaces 0.05'],
-    'README' => [qw(0.06 2004/05/19), 'generated, replaces 0.05'],
-    'lib/Data/Str2Num.pm' => [qw(0.05 2004/05/19), 'revised 0.04'],
-    't/Data/Str2Num.d' => [qw(0.03 2004/05/19), 'revised 0.02'],
-    't/Data/Str2Num.pm' => [qw(0.04 2004/05/19), 'revised 0.03'],
-    't/Data/Str2Num.t' => [qw(0.04 2004/05/19), 'revised 0.03'],
-    't/Data/File/Package.pm' => [qw(1.17 2004/05/19), 'revised 1.15'],
-    't/Data/Test/Tech.pm' => [qw(1.26 2004/05/19), 'revised 1.21'],
-    't/Data/Data/Secs2.pm' => [qw(1.23 2004/05/19), 'revised 1.18'],
-    't/Data/Data/Startup.pm' => [qw(0.06 2004/05/19), 'new'],
+    'lib/Docs/Site_SVD/Data_Str2Num.pm' => [qw(0.07 2004/05/22), 'revised 0.06'],
+    'MANIFEST' => [qw(0.07 2004/05/22), 'generated, replaces 0.06'],
+    'Makefile.PL' => [qw(0.07 2004/05/22), 'generated, replaces 0.06'],
+    'README' => [qw(0.07 2004/05/22), 'generated, replaces 0.06'],
+    'lib/Data/Str2Num.pm' => [qw(0.08 2004/05/22), 'revised 0.05'],
+    't/Data/Str2Num.d' => [qw(0.03 2004/05/19), 'unchanged'],
+    't/Data/Str2Num.pm' => [qw(0.04 2004/05/19), 'unchanged'],
+    't/Data/Str2Num.t' => [qw(0.04 2004/05/19), 'unchanged'],
+    't/Data/File/Package.pm' => [qw(1.17 2004/05/22), 'unchanged'],
+    't/Data/Test/Tech.pm' => [qw(1.26 2004/05/22), 'unchanged'],
+    't/Data/Data/Secs2.pm' => [qw(1.26 2004/05/22), 'revised 1.23'],
+    't/Data/Data/Startup.pm' => [qw(0.07 2004/05/22), 'revised 0.06'],
 
 );
 
@@ -60,9 +60,9 @@ Docs::Site_SVD::Data_Str2Num - int str to int; float str to float; else undef. N
 
  Revision: D
 
- Version: 0.06
+ Version: 0.07
 
- Date: 2004/05/19
+ Date: 2004/05/22
 
  Prepared for: General Public 
 
@@ -107,7 +107,7 @@ also for testing a scalar to see if it is in fact an integer scalar.
 
 =head2 1.3 Document overview.
 
-This document releases Data::Str2Num version 0.06
+This document releases Data::Str2Num version 0.07
 providing a description of the inventory, installation
 instructions and other information necessary to
 utilize and track this release.
@@ -122,7 +122,7 @@ system file specification.
 
 This document releases the file 
 
- Data-Str2Num-0.06.tar.gz
+ Data-Str2Num-0.07.tar.gz
 
 found at the following repository(s):
 
@@ -206,18 +206,18 @@ consists of the following files:
 
  file                                                         version date       comment
  ------------------------------------------------------------ ------- ---------- ------------------------
- lib/Docs/Site_SVD/Data_Str2Num.pm                            0.06    2004/05/19 revised 0.05
- MANIFEST                                                     0.06    2004/05/19 generated, replaces 0.05
- Makefile.PL                                                  0.06    2004/05/19 generated, replaces 0.05
- README                                                       0.06    2004/05/19 generated, replaces 0.05
- lib/Data/Str2Num.pm                                          0.05    2004/05/19 revised 0.04
- t/Data/Str2Num.d                                             0.03    2004/05/19 revised 0.02
- t/Data/Str2Num.pm                                            0.04    2004/05/19 revised 0.03
- t/Data/Str2Num.t                                             0.04    2004/05/19 revised 0.03
- t/Data/File/Package.pm                                       1.17    2004/05/19 revised 1.15
- t/Data/Test/Tech.pm                                          1.26    2004/05/19 revised 1.21
- t/Data/Data/Secs2.pm                                         1.23    2004/05/19 revised 1.18
- t/Data/Data/Startup.pm                                       0.06    2004/05/19 new
+ lib/Docs/Site_SVD/Data_Str2Num.pm                            0.07    2004/05/22 revised 0.06
+ MANIFEST                                                     0.07    2004/05/22 generated, replaces 0.06
+ Makefile.PL                                                  0.07    2004/05/22 generated, replaces 0.06
+ README                                                       0.07    2004/05/22 generated, replaces 0.06
+ lib/Data/Str2Num.pm                                          0.08    2004/05/22 revised 0.05
+ t/Data/Str2Num.d                                             0.03    2004/05/19 unchanged
+ t/Data/Str2Num.pm                                            0.04    2004/05/19 unchanged
+ t/Data/Str2Num.t                                             0.04    2004/05/19 unchanged
+ t/Data/File/Package.pm                                       1.17    2004/05/22 unchanged
+ t/Data/Test/Tech.pm                                          1.26    2004/05/22 unchanged
+ t/Data/Data/Secs2.pm                                         1.26    2004/05/22 revised 1.23
+ t/Data/Data/Startup.pm                                       0.07    2004/05/22 revised 0.06
 
 
 =head2 3.3 Changes
@@ -275,6 +275,14 @@ Keep these separate means one does not have to deal
 with all that SEMI business if one just needs 
 the functionality of these subroutines.
 
+=item Data::Str2Num 0.07
+
+In C<str2integer> and C<str2float> subroutine, skip
+empty and undef strings. Processing produces all kinds of
+uninitialize errors.
+
+Add documentation for the C<str2int> subroutine.
+
 =back
 
 =head2 3.4 Adaptation data.
@@ -313,13 +321,13 @@ Enter one of the following repositories in a web browser:
   http://www.softwarediamonds/packages/
   http://www.perl.com/CPAN/authors/id/S/SO/SOFTDIA/
 
-Right click on 'Data-Str2Num-0.06.tar.gz' and download to a temporary
+Right click on 'Data-Str2Num-0.07.tar.gz' and download to a temporary
 installation directory.
 Enter the following where $make is 'nmake' for microsoft
 windows; otherwise 'make'.
 
- gunzip Data-Str2Num-0.06.tar.gz
- tar -xf Data-Str2Num-0.06.tar
+ gunzip Data-Str2Num-0.07.tar.gz
+ tar -xf Data-Str2Num-0.07.tar
  perl Makefile.PL
  $make test
  $make install
@@ -332,7 +340,7 @@ not install, download and install unxutils from
 
 =item Prerequistes.
 
- 'Data::SecsPack' => '0.01',
+ None.
 
 
 =item Security, privacy, or safety precautions.
@@ -428,10 +436,10 @@ __DATA__
 DISTNAME: Data-Str2Num^
 REPOSITORY_DIR: packages^
 
-VERSION : 0.06^
+VERSION : 0.07^
 FREEZE: 1^
 PREVIOUS_DISTNAME:  ^
-PREVIOUS_RELEASE: 0.05^
+PREVIOUS_RELEASE: 0.06^
 REVISION: D^
 
 AUTHOR  : SoftwareDiamonds.com E<lt>support@SoftwareDiamonds.comE<gt>^
@@ -464,9 +472,7 @@ lib/Data/Secs2.pm => t/Data/Data/Secs2.pm
 lib/Data/Startup.pm => t/Data/Data/Startup.pm
 ^
 
-PREREQ_PM:
-'Data::SecsPack' => '0.01',
-^
+PREREQ_PM: ^
 README_PODS: lib/Data/Str2Num.pm^
 TESTS: t/Data/Str2Num.t^
 EXE_FILES:  ^
@@ -524,6 +530,14 @@ where do not need nor want all that SEMI E5 support.
 Keep these separate means one does not have to deal
 with all that SEMI business if one just needs 
 the functionality of these subroutines.
+
+\=item Data::Str2Num 0.07
+
+In C<str2integer> and C<str2float> subroutine, skip
+empty and undef strings. Processing produces all kinds of
+uninitialize errors.
+
+Add documentation for the C<str2int> subroutine.
 
 \=back
 ^
@@ -715,6 +729,10 @@ SEE_ALSO:
 HTML: ^
 
 ~-~
+
+
+
+
 
 
 

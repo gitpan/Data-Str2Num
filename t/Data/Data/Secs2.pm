@@ -11,8 +11,8 @@ use warnings::register;
 use attributes;
 
 use vars qw($VERSION $DATE $FILE);
-$VERSION = '1.23';
-$DATE = '2004/05/19';
+$VERSION = '1.26';
+$DATE = '2004/05/22';
 $FILE = __FILE__;
 
 use Data::Startup 0.02;
@@ -59,9 +59,7 @@ sub new
 # in the regards to interface with SecsPack
 #
 # use SelfLoader;
-
 # 1
-
 # __DATA__
 
 
@@ -1073,7 +1071,7 @@ sub transify
               # Count the numbers, should agree with length 
               elsif ($format =~ /^[FNSTU]$/)  {
                   if(0 < $length) {
-                       ($str, my @nums) = Data::SecsPack->str2float($ascii_secs, {ascii_float => 1});
+                       ($str, my @nums) = Data::Str2Num->str2float($ascii_secs, {ascii_float => 1});
                        $ascii_secs = join ' ',@$str;
                        if($length != @nums) {
                            $event = "Wrong number of numbers." ;
@@ -1097,7 +1095,7 @@ sub transify
               ######
               # Count the numbers
               if( $format =~ /^[FNSTU]$/ ) {
-                  ($str, my @nums) = Data::SecsPack->str2float($ascii_secs, {ascii_float => 1});
+                  ($str, my @nums) = Data::Str2Num->str2float($ascii_secs, {ascii_float => 1});
                   $ascii_secs = join ' ',@$str;
                   push @secs_obj, "$format$byte_code";
                   if(@nums == 0) {

@@ -14,8 +14,8 @@ use warnings::register;
 # Connect up with the event log.
 #
 use vars qw( $VERSION $DATE $FILE);
-$VERSION = '0.05';
-$DATE = '2004/05/19';
+$VERSION = '0.08';
+$DATE = '2004/05/22';
 $FILE = __FILE__;
 
 use vars qw(@ISA @EXPORT_OK);
@@ -55,7 +55,6 @@ sub new
 }
 
 
-
 ######
 # Covert a string to floats.
 #
@@ -80,6 +79,7 @@ sub str2float
      my $early_exit unless wantarray;
      my ($sign,$integer,$fraction,$exponent);
      foreach (@strs) {
+         next unless defined $_;
          while ( length($_) ) {
 
              ($sign, $integer,$fraction,$exponent) = ('',undef,undef,undef);
@@ -209,6 +209,7 @@ sub str2integer
      my ($int,$num);
      my @integers = ();
      foreach $_ (@strs) {
+         next unless defined $_;
          while ( length($_) ) {
              if($_  =~ s/^\s*(-?)\s*(0[0-7]+|0?b[0-1]+|0x[0-9A-Fa-f]+)\s*[,;\n]?//) {
                  $int = $1 . $2;
@@ -252,7 +253,7 @@ LAST:
      #########
      # Drop leading empty strings
      #
-     while (@strs && $strs[0] !~ /^\s*\S/) {
+     while (@strs && (!defined($strs[0]) || $strs[0] !~ /^\s*\S/)) {
           shift @strs;
      }
      @strs = ('') unless(@strs); # do not shift @strs out of existance
@@ -273,7 +274,7 @@ Data::Str2Num - int str to int; float str to float, else undef. No warnings.
  #####
  # Subroutine interface
  #  
- use Data::SecsPack qw(config str2float str2int str2integer);
+ use Data::Str2Num qw(config str2float str2int str2integer);
 
  $float = str2float($string, [@options]);
  (\@strings, @floats) = str2float(@strings, [@options]);
@@ -340,6 +341,13 @@ point for $decimal_magnitude.
 
 In a scalar context, it parse out any type of $number in the leading C<$string>.
 This is especially useful for C<$string> that is certain to have a single number.
+
+=head2 str2int
+
+ $integer = $secspack->str2int($string);
+
+The C<str2int> subroutine is the same as the C<str2integer> subroutine except that
+that the subroutine always returns the scalar processing  C<str2integer> subroutine.
 
 =head2 str2integer
 
