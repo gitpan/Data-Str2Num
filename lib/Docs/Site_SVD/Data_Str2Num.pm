@@ -10,23 +10,24 @@ use warnings;
 use warnings::register;
 
 use vars qw($VERSION $DATE $FILE );
-$VERSION = '0.05';
-$DATE = '2004/04/25';
+$VERSION = '0.06';
+$DATE = '2004/05/19';
 $FILE = __FILE__;
 
 use vars qw(%INVENTORY);
 %INVENTORY = (
-    'lib/Docs/Site_SVD/Data_Str2Num.pm' => [qw(0.05 2004/04/25), 'revised 0.04'],
-    'MANIFEST' => [qw(0.05 2004/04/25), 'generated, replaces 0.04'],
-    'Makefile.PL' => [qw(0.05 2004/04/25), 'generated, replaces 0.04'],
-    'README' => [qw(0.05 2004/04/25), 'generated, replaces 0.04'],
-    'lib/Data/Str2Num.pm' => [qw(0.04 2004/04/25), 'revised 0.03'],
-    't/Data/Str2Num.d' => [qw(0.02 2004/04/13), 'unchanged'],
-    't/Data/Str2Num.pm' => [qw(0.03 2004/04/13), 'unchanged'],
-    't/Data/Str2Num.t' => [qw(0.03 2004/04/13), 'unchanged'],
-    't/Data/File/Package.pm' => [qw(1.16 2004/04/25), 'unchanged'],
-    't/Data/Test/Tech.pm' => [qw(1.21 2004/04/25), 'revised 1.17'],
-    't/Data/Data/Secs2.pm' => [qw(1.18 2004/04/25), 'revised 1.15'],
+    'lib/Docs/Site_SVD/Data_Str2Num.pm' => [qw(0.06 2004/05/19), 'revised 0.05'],
+    'MANIFEST' => [qw(0.06 2004/05/19), 'generated, replaces 0.05'],
+    'Makefile.PL' => [qw(0.06 2004/05/19), 'generated, replaces 0.05'],
+    'README' => [qw(0.06 2004/05/19), 'generated, replaces 0.05'],
+    'lib/Data/Str2Num.pm' => [qw(0.05 2004/05/19), 'revised 0.04'],
+    't/Data/Str2Num.d' => [qw(0.03 2004/05/19), 'revised 0.02'],
+    't/Data/Str2Num.pm' => [qw(0.04 2004/05/19), 'revised 0.03'],
+    't/Data/Str2Num.t' => [qw(0.04 2004/05/19), 'revised 0.03'],
+    't/Data/File/Package.pm' => [qw(1.17 2004/05/19), 'revised 1.15'],
+    't/Data/Test/Tech.pm' => [qw(1.26 2004/05/19), 'revised 1.21'],
+    't/Data/Data/Secs2.pm' => [qw(1.23 2004/05/19), 'revised 1.18'],
+    't/Data/Data/Startup.pm' => [qw(0.06 2004/05/19), 'new'],
 
 );
 
@@ -45,19 +46,23 @@ use vars qw(%INVENTORY);
 
 
 
+=head1 NAME
+
+Docs::Site_SVD::Data_Str2Num - int str to int; float str to float; else undef. No warnings.
+
 =head1 Title Page
 
  Software Version Description
 
  for
 
- Data::Str2Num - Obsoleted by Data::SecsPack. int str to int; else undef. No warnings.
+ Docs::Site_SVD::Data_Str2Num - int str to int; float str to float; else undef. No warnings.
 
  Revision: D
 
- Version: 0.05
+ Version: 0.06
 
- Date: 2004/04/25
+ Date: 2004/05/19
 
  Prepared for: General Public 
 
@@ -83,7 +88,10 @@ extend the capabilities of the Perl language.
 
 The "L<Data::Str2Num|Data::Str2Num>" module extends the Perl language (the system).
 
-The "Data::Str2int" module translates an scalar string to a scalar integer.
+The "Data::Str2Num" package translates an scalar string to a scalar integer.
+The package handles parser out of wide range of integers and floats from
+an alphanumeric string in different formats.
+
 Perl itself has a documented function, '0+$x', that converts a scalar to
 so that its internal storage is an integer
 (See p.351, 3rd Edition of Programming Perl).
@@ -99,7 +107,7 @@ also for testing a scalar to see if it is in fact an integer scalar.
 
 =head2 1.3 Document overview.
 
-This document releases Data::Str2Num version 0.05
+This document releases Data::Str2Num version 0.06
 providing a description of the inventory, installation
 instructions and other information necessary to
 utilize and track this release.
@@ -114,7 +122,7 @@ system file specification.
 
 This document releases the file 
 
- Data-Str2Num-0.05.tar.gz
+ Data-Str2Num-0.06.tar.gz
 
 found at the following repository(s):
 
@@ -158,6 +166,18 @@ disclaimer in the documentation and/or
 other materials provided with the
 distribution.
 
+=item 3
+
+The installation of the binary or source
+must visually present to the installer 
+the above copyright notice,
+this list of conditions intact,
+that the original source is available
+at http://softwarediamonds.com
+and provide means
+for the installer to actively accept
+the list of conditions.
+
 =back
 
 SOFTWARE DIAMONDS, http://www.SoftwareDiamonds.com,
@@ -186,17 +206,18 @@ consists of the following files:
 
  file                                                         version date       comment
  ------------------------------------------------------------ ------- ---------- ------------------------
- lib/Docs/Site_SVD/Data_Str2Num.pm                            0.05    2004/04/25 revised 0.04
- MANIFEST                                                     0.05    2004/04/25 generated, replaces 0.04
- Makefile.PL                                                  0.05    2004/04/25 generated, replaces 0.04
- README                                                       0.05    2004/04/25 generated, replaces 0.04
- lib/Data/Str2Num.pm                                          0.04    2004/04/25 revised 0.03
- t/Data/Str2Num.d                                             0.02    2004/04/13 unchanged
- t/Data/Str2Num.pm                                            0.03    2004/04/13 unchanged
- t/Data/Str2Num.t                                             0.03    2004/04/13 unchanged
- t/Data/File/Package.pm                                       1.16    2004/04/25 unchanged
- t/Data/Test/Tech.pm                                          1.21    2004/04/25 revised 1.17
- t/Data/Data/Secs2.pm                                         1.18    2004/04/25 revised 1.15
+ lib/Docs/Site_SVD/Data_Str2Num.pm                            0.06    2004/05/19 revised 0.05
+ MANIFEST                                                     0.06    2004/05/19 generated, replaces 0.05
+ Makefile.PL                                                  0.06    2004/05/19 generated, replaces 0.05
+ README                                                       0.06    2004/05/19 generated, replaces 0.05
+ lib/Data/Str2Num.pm                                          0.05    2004/05/19 revised 0.04
+ t/Data/Str2Num.d                                             0.03    2004/05/19 revised 0.02
+ t/Data/Str2Num.pm                                            0.04    2004/05/19 revised 0.03
+ t/Data/Str2Num.t                                             0.04    2004/05/19 revised 0.03
+ t/Data/File/Package.pm                                       1.17    2004/05/19 revised 1.15
+ t/Data/Test/Tech.pm                                          1.26    2004/05/19 revised 1.21
+ t/Data/Data/Secs2.pm                                         1.23    2004/05/19 revised 1.18
+ t/Data/Data/Startup.pm                                       0.06    2004/05/19 new
 
 
 =head2 3.3 Changes
@@ -244,6 +265,16 @@ provide exact equivalent of the old C<Data::Str2Num> subroutines.
 
 Changed the abstract to 'obsoleted by Data::Secs2'
 
+=item Data::Str2Num 0.06
+
+It was a mistake to merge C<Data::Str2Num> subroutines with
+the C<Data::Secs2> and C<Data::SecsPack> modules.
+These are specialized modules. There are many cases
+where do not need nor want all that SEMI E5 support.
+Keep these separate means one does not have to deal
+with all that SEMI business if one just needs 
+the functionality of these subroutines.
+
 =back
 
 =head2 3.4 Adaptation data.
@@ -282,13 +313,13 @@ Enter one of the following repositories in a web browser:
   http://www.softwarediamonds/packages/
   http://www.perl.com/CPAN/authors/id/S/SO/SOFTDIA/
 
-Right click on 'Data-Str2Num-0.05.tar.gz' and download to a temporary
+Right click on 'Data-Str2Num-0.06.tar.gz' and download to a temporary
 installation directory.
 Enter the following where $make is 'nmake' for microsoft
 windows; otherwise 'make'.
 
- gunzip Data-Str2Num-0.05.tar.gz
- tar -xf Data-Str2Num-0.05.tar
+ gunzip Data-Str2Num-0.06.tar.gz
+ tar -xf Data-Str2Num-0.06.tar
  perl Makefile.PL
  $make test
  $make install
@@ -381,24 +412,12 @@ extension for a Perl test script file
 
 =over 4
 
-=item L<Data::SecsPack|Data::SecsPack> 
-
 =item L<Docs::US_DOD::SVD|Docs::US_DOD::SVD> 
 
 =back
 
 =for html
-<hr>
-<p><br>
-<!-- BLK ID="NOTICE" -->
-<!-- /BLK -->
-<p><br>
-<!-- BLK ID="OPT-IN" -->
-<!-- /BLK -->
-<p><br>
-<!-- BLK ID="LOG_CGI" -->
-<!-- /BLK -->
-<p><br>
+
 
 =cut
 
@@ -409,15 +428,15 @@ __DATA__
 DISTNAME: Data-Str2Num^
 REPOSITORY_DIR: packages^
 
-VERSION : 0.05^
+VERSION : 0.06^
 FREEZE: 1^
 PREVIOUS_DISTNAME:  ^
-PREVIOUS_RELEASE: 0.04^
+PREVIOUS_RELEASE: 0.05^
 REVISION: D^
 
 AUTHOR  : SoftwareDiamonds.com E<lt>support@SoftwareDiamonds.comE<gt>^
-ABSTRACT: Obsoleted by Data::SecsPack. int str to int; else undef. No warnings.^
-TITLE   : Data::Str2Num - Obsoleted by Data::SecsPack. int str to int; else undef. No warnings.^
+ABSTRACT:int str to int; float str to float; else undef. No warnings.^
+TITLE   : Docs::Site_SVD::Data_Str2Num - int str to int; float str to float; else undef. No warnings.^
 END_USER: General Public^
 COPYRIGHT: copyright © 2003 Software Diamonds^
 CLASSIFICATION: NONE^
@@ -442,6 +461,7 @@ t/Data/Str2Num.*
 lib/File/Package.pm => t/Data/File/Package.pm
 lib/Test/Tech.pm => t/Data/Test/Tech.pm
 lib/Data/Secs2.pm => t/Data/Data/Secs2.pm
+lib/Data/Startup.pm => t/Data/Data/Startup.pm
 ^
 
 PREREQ_PM:
@@ -495,6 +515,16 @@ provide exact equivalent of the old C<Data::Str2Num> subroutines.
 
 Changed the abstract to 'obsoleted by Data::Secs2'
 
+\=item Data::Str2Num 0.06
+
+It was a mistake to merge C<Data::Str2Num> subroutines with
+the C<Data::Secs2> and C<Data::SecsPack> modules.
+These are specialized modules. There are many cases
+where do not need nor want all that SEMI E5 support.
+Keep these separate means one does not have to deal
+with all that SEMI business if one just needs 
+the functionality of these subroutines.
+
 \=back
 ^
 
@@ -508,7 +538,10 @@ utilize and track this release.
 CAPABILITIES:
 The "L<Data::Str2Num|Data::Str2Num>" module extends the Perl language (the system).
 
-The "Data::Str2int" module translates an scalar string to a scalar integer.
+The "Data::Str2Num" package translates an scalar string to a scalar integer.
+The package handles parser out of wide range of integers and floats from
+an alphanumeric string in different formats.
+
 Perl itself has a documented function, '0+$x', that converts a scalar to
 so that its internal storage is an integer
 (See p.351, 3rd Edition of Programming Perl).
@@ -580,6 +613,18 @@ this list of conditions and the following
 disclaimer in the documentation and/or
 other materials provided with the
 distribution.
+
+\=item 3
+
+The installation of the binary or source
+must visually present to the installer 
+the above copyright notice,
+this list of conditions intact,
+that the original source is available
+at http://softwarediamonds.com
+and provide means
+for the installer to actively accept
+the list of conditions.
 
 \=back
 
@@ -662,27 +707,25 @@ extension for a Perl test script file
 SEE_ALSO: 
 \=over 4
 
-\=item L<Data::SecsPack|Data::SecsPack> 
-
 \=item L<Docs::US_DOD::SVD|Docs::US_DOD::SVD> 
 
 \=back
 ^
 
+HTML: ^
 
-HTML:
-<hr>
-<p><br>
-<!-- BLK ID="NOTICE" -->
-<!-- /BLK -->
-<p><br>
-<!-- BLK ID="OPT-IN" -->
-<!-- /BLK -->
-<p><br>
-<!-- BLK ID="LOG_CGI" -->
-<!-- /BLK -->
-<p><br>
-^
 ~-~
+
+
+
+
+
+
+
+
+
+
+
+
 
 

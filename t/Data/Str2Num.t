@@ -7,8 +7,8 @@ use warnings;
 use warnings::register;
 
 use vars qw($VERSION $DATE $FILE);
-$VERSION = '0.03';   # automatically generated file
-$DATE = '2004/04/13';
+$VERSION = '0.04';   # automatically generated file
+$DATE = '2004/05/19';
 $FILE = __FILE__;
 
 
@@ -78,8 +78,9 @@ BEGIN {
    # and the todo tests
    #
    require Test::Tech;
-   Test::Tech->import( qw(plan ok skip skip_tests tech_config finish) );
-   plan(tests => 7);
+   Test::Tech->import( qw(finish is_skip ok ok_sub plan skip 
+                          skip_sub skip_tests tech_config) );
+   plan(tests => 13);
 
 }
 
@@ -94,42 +95,6 @@ END {
 }
 
 
-=head1 comment_out
-
-###
-# Have been problems with debugger with trapping CARP
-#
-
-####
-# Poor man's eval where the test script traps off the Carp::croak 
-# Carp::confess functions.
-#
-# The Perl authorities have Core::die locked down tight so
-# it is next to impossible to trap off of Core::die. Lucky 
-# must everyone uses Carp to die instead of just dieing.
-#
-use Carp;
-use vars qw($restore_croak $croak_die_error $restore_confess $confess_die_error);
-$restore_croak = \&Carp::croak;
-$croak_die_error = '';
-$restore_confess = \&Carp::confess;
-$confess_die_error = '';
-no warnings;
-*Carp::croak = sub {
-   $croak_die_error = '# Test Script Croak. ' . (join '', @_);
-   $croak_die_error .= Carp::longmess (join '', @_);
-   $croak_die_error =~ s/\n/\n#/g;
-       goto CARP_DIE; # once croak can not continue
-};
-*Carp::confess = sub {
-   $confess_die_error = '# Test Script Confess. ' . (join '', @_);
-   $confess_die_error .= Carp::longmess (join '', @_);
-   $confess_die_error =~ s/\n/\n#/g;
-       goto CARP_DIE; # once confess can not continue
-
-};
-use warnings;
-=cut
 
 
    # Perl code from C:
@@ -138,16 +103,10 @@ use warnings;
 
     my $uut = 'Data::Str2Num';
     my $loaded;
-
-ok(  $loaded = $fp->is_package_loaded($uut), # actual results
-      '', # expected results
-     "",
-     "UUT not loaded");
-
-#  ok:  1
+    my ($result,@result); # force a context;
 
    # Perl code from C:
-my $errors = $fp->load_package($uut);
+my $errors = $fp->load_package($uut, 'str2float','str2int','str2integer',);
 
 
 ####
@@ -156,68 +115,108 @@ my $errors = $fp->load_package($uut);
 # 
 
 #####
-skip_tests( 1 ) unless skip(
-      $loaded, # condition to skip test   
+skip_tests( 1 ) unless
+  skip( $loaded, # condition to skip test   
       $errors, # actual results
-      '',  # expected results
+      '', # expected results
       "",
       "Load UUT");
- 
-#  ok:  2
+
+#  ok:  1
 
 ok(  $uut->str2int('033'), # actual results
      27, # expected results
      "",
      "str2int(\'033\')");
 
-#  ok:  3
+#  ok:  2
 
 ok(  $uut->str2int('0xFF'), # actual results
      255, # expected results
      "",
      "str2int(\'0xFF\')");
 
-#  ok:  4
+#  ok:  3
 
 ok(  $uut->str2int('0b1010'), # actual results
      10, # expected results
      "",
      "str2int(\'0b1010\')");
 
-#  ok:  5
+#  ok:  4
 
 ok(  $uut->str2int('255'), # actual results
      255, # expected results
      "",
      "str2int(\'255\')");
 
-#  ok:  6
+#  ok:  5
 
 ok(  $uut->str2int('hello'), # actual results
      undef, # expected results
      "",
      "str2int(\'hello\')");
 
+#  ok:  6
+
+ok(  $result = $uut->str2integer(1E20), # actual results
+     undef, # expected results
+     "",
+     "str2integer(1E20)");
+
 #  ok:  7
 
+   # Perl code from C:
+my ($strings, @numbers) = str2integer(' 78 45 25', ' 512E4 1024 hello world');
 
-=head1 comment out
+ok(  [@numbers], # actual results
+     [78,45,25,], # expected results
+     "",
+     "str2integer(' 78 45 25', ' 512E4 1024 hello world') \@numbers");
 
-# does not work with debugger
-CARP_DIE:
-    if ($croak_die_error || $confess_die_error) {
-        print $Test::TESTOUT = "not ok $Test::ntest\n";
-        $Test::ntest++;
-        print $Test::TESTERR $croak_die_error . $confess_die_error;
-        $croak_die_error = '';
-        $confess_die_error = '';
-        skip_tests(1, 'Test invalid because of Carp die.');
-    }
-    no warnings;
-    *Carp::croak = $restore_croak;    
-    *Carp::confess = $restore_confess;
-    use warnings;
-=cut
+#  ok:  8
+
+ok(  join( ' ', @$strings), # actual results
+     '512E4 1024 hello world', # expected results
+     "",
+     "str2integer(' 78 45 25', ' 512E4 1024 hello world') \@strings");
+
+#  ok:  9
+
+   # Perl code from C:
+($strings, @numbers) = str2float(' 78 -2.4E-6 0.0025  0', ' 512E4 hello world');
+
+ok(  [@numbers], # actual results
+     [[78,1], [-24,-6], [25,-3], [0, -1], [512,6]], # expected results
+     "",
+     "str2float(' 78 -2.4E-6 0.0025 0', ' 512E4 hello world') numbers");
+
+#  ok:  10
+
+ok(  join( ' ', @$strings), # actual results
+     'hello world', # expected results
+     "",
+     "str2float(' 78 -2.4E-6 0.0025 0', ' 512E4 hello world') \@strings");
+
+#  ok:  11
+
+   # Perl code from C:
+($strings, @numbers) = str2float(' 78 -2.4E-6 0.0025 0xFF 077 0', ' 512E4 hello world', {ascii_float => 1});
+
+ok(  [@numbers], # actual results
+     ['78','-2.4E-6','0.0025','255','63','0','512E4'], # expected results
+     "",
+     "str2float(' 78 -2.4E-6 0.0025 0xFF 077 0', ' 512E4 hello world', {ascii_float => 1}) numbers");
+
+#  ok:  12
+
+ok(  join( ' ', @$strings), # actual results
+     'hello world', # expected results
+     "",
+     "str2float(' 78 -2.4E-6 0.0025 0xFF 077 0', ' 512E4 hello world', {ascii_float => 1}) \@strings");
+
+#  ok:  13
+
 
     finish();
 

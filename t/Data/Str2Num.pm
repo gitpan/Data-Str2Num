@@ -10,8 +10,8 @@ use warnings;
 use warnings::register;
 
 use vars qw($VERSION $DATE $FILE );
-$VERSION = '0.03';
-$DATE = '2004/04/13';
+$VERSION = '0.04';
+$DATE = '2004/05/19';
 $FILE = __FILE__;
 
 ########
@@ -28,6 +28,10 @@ $FILE = __FILE__;
 #
 
 
+=head1 NAME
+
+ - Software Test Description for Data::Str2Num
+
 =head1 TITLE PAGE
 
  Detailed Software Test Description (STD)
@@ -40,7 +44,7 @@ $FILE = __FILE__;
 
  Version: 
 
- Date: 2004/04/12
+ Date: 2004/05/19
 
  Prepared for: General Public 
 
@@ -48,39 +52,44 @@ $FILE = __FILE__;
 
  Classification: None
 
+#######
+#  
+#  1. SCOPE
+#
+#
 =head1 SCOPE
 
 This detail STD and the 
 L<General Perl Program Module (PM) STD|Test::STD::PerlSTD>
 establishes the tests to verify the
 requirements of Perl Program Module (PM) L<Data::Str2Num|Data::Str2Num>
-
 The format of this STD is a tailored L<2167A STD DID|Docs::US_DOD::STD>.
-in accordance with 
-L<Detail STD Format|Test::STDmaker/Detail STD Format>.
+
+#######
+#  
+#  3. TEST PREPARATIONS
+#
+#
+=head1 TEST PREPARATIONS
+
+Test preparations are establishes by the L<General STD|Test::STD::PerlSTD>.
+
 
 #######
 #  
 #  4. TEST DESCRIPTIONS
 #
-#  4.1 Test 001
 #
-#  ..
-#
-#  4.x Test x
-#
-#
-
 =head1 TEST DESCRIPTIONS
 
 The test descriptions uses a legend to
 identify different aspects of a test description
 in accordance with
-L<STD FormDB Test Description Fields|Test::STDmaker/STD FormDB Test Description Fields>.
+L<STD PM Form Database Test Description Fields|Test::STDmaker/STD PM Form Database Test Description Fields>.
 
 =head2 Test Plan
 
- T: 7^
+ T: 13^
 
 =head2 ok: 1
 
@@ -90,57 +99,102 @@ L<STD FormDB Test Description Fields|Test::STDmaker/STD FormDB Test Description 
      my $fp = 'File::Package';
      my $uut = 'Data::Str2Num';
      my $loaded;
+     my ($result,@result); # force a context
  ^
- VO: ^
-  N: UUT not loaded^
-  A: $loaded = $fp->is_package_loaded($uut)^
-  E:  ''^
+  N: Load UUT^
+  R: L<DataPort::DataFile/general [1] - load>^
+  S: $loaded^
+  C: my $errors = $fp->load_package($uut, 'str2float','str2int','str2integer',)^
+  A: $errors^
+ SE: ''^
  ok: 1^
 
 =head2 ok: 2
 
-  N: Load UUT^
-  R: L<DataPort::DataFile/general [1] - load>^
-  S: $loaded^
-  C: my $errors = $fp->load_package($uut)^
-  A: $errors^
- SE: ''^
+  N: str2int(\'033\')^
+  A: $uut->str2int('033')^
+  E: 27^
  ok: 2^
 
 =head2 ok: 3
 
-  N: str2int(\'033\')^
-  A: $uut->str2int('033')^
-  E: 27^
+  N: str2int(\'0xFF\')^
+  A: $uut->str2int('0xFF')^
+  E: 255^
  ok: 3^
 
 =head2 ok: 4
 
-  N: str2int(\'0xFF\')^
-  A: $uut->str2int('0xFF')^
-  E: 255^
+  N: str2int(\'0b1010\')^
+  A: $uut->str2int('0b1010')^
+  E: 10^
  ok: 4^
 
 =head2 ok: 5
 
-  N: str2int(\'0b1010\')^
-  A: $uut->str2int('0b1010')^
-  E: 10^
+  N: str2int(\'255\')^
+  A: $uut->str2int('255')^
+  E: 255^
  ok: 5^
 
 =head2 ok: 6
 
-  N: str2int(\'255\')^
-  A: $uut->str2int('255')^
-  E: 255^
+  N: str2int(\'hello\')^
+  A: $uut->str2int('hello')^
+  E: undef^
  ok: 6^
 
 =head2 ok: 7
 
-  N: str2int(\'hello\')^
-  A: $uut->str2int('hello')^
+  N: str2integer(1E20)^
+  A: $result = $uut->str2integer(1E20)^
   E: undef^
  ok: 7^
+
+=head2 ok: 8
+
+  N: str2integer(' 78 45 25', ' 512E4 1024 hello world') \@numbers^
+  C: my ($strings, @numbers) = str2integer(' 78 45 25', ' 512E4 1024 hello world')^
+  A: [@numbers]^
+  E: [78,45,25,]^
+ ok: 8^
+
+=head2 ok: 9
+
+  N: str2integer(' 78 45 25', ' 512E4 1024 hello world') \@strings^
+  A: join( ' ', @$strings)^
+  E: '512E4 1024 hello world'^
+ ok: 9^
+
+=head2 ok: 10
+
+  N: str2float(' 78 -2.4E-6 0.0025 0', ' 512E4 hello world') numbers^
+  C: ($strings, @numbers) = str2float(' 78 -2.4E-6 0.0025  0', ' 512E4 hello world')^
+  A: [@numbers]^
+  E: [[78,1], [-24,-6], [25,-3], [0, -1], [512,6]]^
+ ok: 10^
+
+=head2 ok: 11
+
+  N: str2float(' 78 -2.4E-6 0.0025 0', ' 512E4 hello world') \@strings^
+  A: join( ' ', @$strings)^
+  E: 'hello world'^
+ ok: 11^
+
+=head2 ok: 12
+
+  N: str2float(' 78 -2.4E-6 0.0025 0xFF 077 0', ' 512E4 hello world', {ascii_float => 1}) numbers^
+  C: ($strings, @numbers) = str2float(' 78 -2.4E-6 0.0025 0xFF 077 0', ' 512E4 hello world', {ascii_float => 1})^
+  A: [@numbers]^
+  E: ['78','-2.4E-6','0.0025','255','63','0','512E4']^
+ ok: 12^
+
+=head2 ok: 13
+
+  N: str2float(' 78 -2.4E-6 0.0025 0xFF 077 0', ' 512E4 hello world', {ascii_float => 1}) \@strings^
+  A: join( ' ', @$strings)^
+  E: 'hello world'^
+ ok: 13^
 
 
 
@@ -154,12 +208,12 @@ L<STD FormDB Test Description Fields|Test::STDmaker/STD FormDB Test Description 
 
   Requirement                                                      Test
  ---------------------------------------------------------------- ----------------------------------------------------------------
- L<DataPort::DataFile/general [1] - load>                         L<t::Data::Str2Num/ok: 2>
+ L<DataPort::DataFile/general [1] - load>                         L<t::Data::Str2Num/ok: 1>
 
 
   Test                                                             Requirement
  ---------------------------------------------------------------- ----------------------------------------------------------------
- L<t::Data::Str2Num/ok: 2>                                        L<DataPort::DataFile/general [1] - load>
+ L<t::Data::Str2Num/ok: 1>                                        L<DataPort::DataFile/general [1] - load>
 
 
 =cut
@@ -229,40 +283,28 @@ L<Data::Str2Num>
 =back
 
 =for html
-<hr>
-<p><br>
-<!-- BLK ID="NOTICE" -->
-<!-- /BLK -->
-<p><br>
-<!-- BLK ID="OPT-IN" -->
-<!-- /BLK -->
-<p><br>
-<!-- BLK ID="EMAIL" -->
-<!-- /BLK -->
-<p><br>
-<!-- BLK ID="LOG_CGI" -->
-<!-- /BLK -->
-<p><br>
+
 
 =cut
 
 __DATA__
 
-File_Spec: Unix^
-UUT: Data::Str2Num^
-Revision: -^
-End_User: General Public^
 Author: http://www.SoftwareDiamonds.com support@SoftwareDiamonds.com^
-Detail_Template: ^
-STD2167_Template: ^
-Version: ^
 Classification: None^
+Detail_Template: ^
+End_User: General Public^
+File_Spec: Unix^
+Name: ^
+Revision: -^
+STD2167_Template: ^
 Temp: temp.pl^
+UUT: Data::Str2Num^
+Version: ^
 Demo: Str2Num.d^
 Verify: Str2Num.t^
 
 
- T: 7^
+ T: 13^
 
 
  C:
@@ -271,46 +313,79 @@ Verify: Str2Num.t^
 
     my $uut = 'Data::Str2Num';
     my $loaded;
+    my ($result,@result); # force a context
 ^
-
-VO: ^
- N: UUT not loaded^
- A: $loaded = $fp->is_package_loaded($uut)^
- E:  ''^
-ok: 1^
 
  N: Load UUT^
  R: L<DataPort::DataFile/general [1] - load>^
  S: $loaded^
- C: my $errors = $fp->load_package($uut)^
+ C: my $errors = $fp->load_package($uut, 'str2float','str2int','str2integer',)^
  A: $errors^
 SE: ''^
-ok: 2^
+ok: 1^
 
  N: str2int(\'033\')^
  A: $uut->str2int('033')^
  E: 27^
-ok: 3^
+ok: 2^
 
  N: str2int(\'0xFF\')^
  A: $uut->str2int('0xFF')^
  E: 255^
-ok: 4^
+ok: 3^
 
  N: str2int(\'0b1010\')^
  A: $uut->str2int('0b1010')^
  E: 10^
-ok: 5^
+ok: 4^
 
  N: str2int(\'255\')^
  A: $uut->str2int('255')^
  E: 255^
-ok: 6^
+ok: 5^
 
  N: str2int(\'hello\')^
  A: $uut->str2int('hello')^
  E: undef^
+ok: 6^
+
+ N: str2integer(1E20)^
+ A: $result = $uut->str2integer(1E20)^
+ E: undef^
 ok: 7^
+
+ N: str2integer(' 78 45 25', ' 512E4 1024 hello world') \@numbers^
+ C: my ($strings, @numbers) = str2integer(' 78 45 25', ' 512E4 1024 hello world')^
+ A: [@numbers]^
+ E: [78,45,25,]^
+ok: 8^
+
+ N: str2integer(' 78 45 25', ' 512E4 1024 hello world') \@strings^
+ A: join( ' ', @$strings)^
+ E: '512E4 1024 hello world'^
+ok: 9^
+
+ N: str2float(' 78 -2.4E-6 0.0025 0', ' 512E4 hello world') numbers^
+ C: ($strings, @numbers) = str2float(' 78 -2.4E-6 0.0025  0', ' 512E4 hello world')^
+ A: [@numbers]^
+ E: [[78,1], [-24,-6], [25,-3], [0, -1], [512,6]]^
+ok: 10^
+
+ N: str2float(' 78 -2.4E-6 0.0025 0', ' 512E4 hello world') \@strings^
+ A: join( ' ', @$strings)^
+ E: 'hello world'^
+ok: 11^
+
+ N: str2float(' 78 -2.4E-6 0.0025 0xFF 077 0', ' 512E4 hello world', {ascii_float => 1}) numbers^
+ C: ($strings, @numbers) = str2float(' 78 -2.4E-6 0.0025 0xFF 077 0', ' 512E4 hello world', {ascii_float => 1})^
+ A: [@numbers]^
+ E: ['78','-2.4E-6','0.0025','255','63','0','512E4']^
+ok: 12^
+
+ N: str2float(' 78 -2.4E-6 0.0025 0xFF 077 0', ' 512E4 hello world', {ascii_float => 1}) \@strings^
+ A: join( ' ', @$strings)^
+ E: 'hello world'^
+ok: 13^
 
 
 See_Also: L<Data::Str2Num>^
@@ -360,24 +435,7 @@ ADVISED OF NEGLIGENCE OR OTHERWISE) ARISING IN
 ANY WAY OUT OF THE POSSIBILITY OF SUCH DAMAGE.
 ^
 
-
-HTML:
-<hr>
-<p><br>
-<!-- BLK ID="NOTICE" -->
-<!-- /BLK -->
-<p><br>
-<!-- BLK ID="OPT-IN" -->
-<!-- /BLK -->
-<p><br>
-<!-- BLK ID="EMAIL" -->
-<!-- /BLK -->
-<p><br>
-<!-- BLK ID="LOG_CGI" -->
-<!-- /BLK -->
-<p><br>
-^
-
+HTML: ^
 
 
 ~-~
